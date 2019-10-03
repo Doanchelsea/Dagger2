@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.example.dagger2_api_login"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    // khai báo khởi tạo : https://github.com/JakeWharton/butterknife
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+
+    // https://www.journaldev.com/22527/android-rxbinding
+    // https://github.com/JakeWharton/RxBinding
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2'
+
+
+    // sử dụng base : https://github.com/trello/RxLifecycle
+    implementation 'com.trello.rxlifecycle3:rxlifecycle:3.1.0'
+    implementation 'com.trello.rxlifecycle3:rxlifecycle-android:3.1.0'
+    implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.1.0'
+
+    // cập nhật mạng liên tục : https://github.com/novoda/merlin
+    implementation 'com.novoda:merlin:1.2.0'
+
+    // load ảnh : https://github.com/bumptech/glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // Toast : https://github.com/GrenderG/Toasty
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+
+    // Diglog load
+    implementation 'com.wang.avi:library:2.1.3'
+
+    //Dagger2
+    implementation 'com.google.dagger:dagger:2.10'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+
+    // Multidex
+    implementation 'androidx.multidex:multidex:2.0.1'
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Threetenabp
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+    // Logger
+    implementation 'com.orhanobut:logger:2.2.0'
+}
