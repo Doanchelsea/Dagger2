@@ -7,8 +7,11 @@ import com.example.dagger2_api_login.api.PostService;
 import com.example.dagger2_api_login.contract.AppConstants;
 import com.example.dagger2_api_login.dagger.qualifierts.ApplicationContext;
 import com.example.dagger2_api_login.dagger.qualifierts.PostApi;
+import com.example.dagger2_api_login.dagger.qualifierts.PreferenceInfo;
 import com.example.dagger2_api_login.data.DataManager;
 
+import com.example.dagger2_api_login.data.local.AppPreferencesHelper;
+import com.example.dagger2_api_login.data.local.PreferencesHelper;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.concurrent.TimeUnit;
@@ -43,6 +46,11 @@ public class ApplicationModuls {
         return application;
     }
 
+    @Provides
+    @PreferenceInfo
+    String providePreferenceName() {
+        return AppConstants.COMMON_PREF_NAME;
+    }
 
     @Provides
     @Singleton
@@ -68,8 +76,8 @@ public class ApplicationModuls {
 
     @Provides
     @Singleton
-    DataManager provideDataManager(PostService postService) {
-        return new DataManager(postService);
+    DataManager provideDataManager(PostService postService, PreferencesHelper preferencesHelper) {
+        return new DataManager(postService,preferencesHelper);
     }
 
     @Provides
@@ -77,6 +85,13 @@ public class ApplicationModuls {
     PostService providePostService(@PostApi Retrofit retrofit) {
         return retrofit.create(PostService.class);
     }
+
+    @Provides
+    @Singleton
+    PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
+        return appPreferencesHelper;
+    }
+
 
     @Provides
     @Singleton

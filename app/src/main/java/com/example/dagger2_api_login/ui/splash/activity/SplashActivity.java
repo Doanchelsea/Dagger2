@@ -1,54 +1,46 @@
-package com.example.dagger2_api_login.ui.login.activity;
+package com.example.dagger2_api_login.ui.splash.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.BaseActivity;
-import com.example.dagger2_api_login.model.dagger.Dagger;
 import com.example.dagger2_api_login.model.dagger.Results;
-import com.example.dagger2_api_login.ui.login.contract.LoginContract;
-import com.example.dagger2_api_login.ui.login.presenter.LoginPresenter;
+import com.example.dagger2_api_login.model.dagger.UserInfo;
+import com.example.dagger2_api_login.ui.login.activity.LoginActivity;
 import com.example.dagger2_api_login.ui.main.activity.MainActivity;
+import com.example.dagger2_api_login.ui.splash.contract.SplashContract;
+import com.example.dagger2_api_login.ui.splash.presenter.SplashPresenter;
 import com.example.dagger2_api_login.widget.LoadingDialog;
-import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 
-import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
-public class LoginActivity extends BaseActivity implements LoginContract.View, Connectable, Disconnectable, Bindable {
-
-    @BindView(R.id.edNumber)
-    EditText edNumber;
-    @BindView(R.id.btnLogin)
-    Button btnLogin;
+public class SplashActivity extends BaseActivity implements SplashContract.View , Connectable, Disconnectable, Bindable {
 
     @Inject
-    LoginPresenter presenter;
+    SplashPresenter splashPresenter;
 
-
-    public static void startActivity(Activity context) {
-        context.startActivity(new Intent(context, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        context.finish();
-    }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_splash;
     }
+
 
     @Override
     protected void onResume() {
@@ -60,12 +52,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
 
     @Override
     protected void attachView() {
-        presenter.attachView(this);
+        splashPresenter.attachView(this);
     }
 
     @Override
     protected void detachView() {
-        presenter.detachView();
+        splashPresenter.detachView();
     }
 
     @Override
@@ -84,13 +76,29 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
 
     @Override
     protected void addEvents() {
-        addDisposable(RxView.clicks(btnLogin).subscribe(aVoid -> {
-            String edNumbe = edNumber.getText().toString().trim();
-            showProgress(true);
-            presenter.checkExistDriverServer(edNumbe);
-        }));
+
     }
 
+    @Override
+    public void showLogin() {
+        addDisposable(Observable.just(0).delay(1000, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aVoid -> {
+                    openLoginScreen();
+                }));
+    }
+
+
+    @Override
+    public void showMain() {
+        addDisposable(Observable.just(0).delay(1000, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aVoid -> {
+                   openMainScreen();
+                }));
+    }
 
     @Override
     public void showProgress(boolean show) {
@@ -108,6 +116,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
         showProgress(false);
     }
 
+
+
+
     @Override
     public void onBind(NetworkStatus networkStatus) {
         if (!networkStatus.isAvailable()) {
@@ -117,28 +128,24 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
 
     @Override
     public void onConnect() {
-
+        splashPresenter.saveDeviceIdSharedPreferences();
+        showProgress(true);
     }
 
     @Override
     public void onDisconnect() {
         showProgress(false);
-        showToastDisconnect();
     }
 
 
-
-    @Override
-    public void onResult(Results results) {
-        presenter.saveUserInfoSharedPreferences(results);
-        ShowMain();
+    private void openLoginScreen() {
         showProgress(false);
+        LoginActivity.startActivity(this);
+        finish();
     }
-
-
-    private void ShowMain() {
+    private void openMainScreen() {
+        showProgress(false);
         MainActivity.startActivity(this);
         finish();
     }
-
 }

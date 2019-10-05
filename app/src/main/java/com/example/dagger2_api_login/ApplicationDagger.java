@@ -13,15 +13,8 @@ public class ApplicationDagger extends Application {
 
     private ApplicationComponets applicationComponent;
 
-
     public static ApplicationDagger getInstance(Context context){
         return (ApplicationDagger) context.getApplicationContext();
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
     }
 
     @Override

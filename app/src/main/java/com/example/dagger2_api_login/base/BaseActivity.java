@@ -2,11 +2,14 @@ package com.example.dagger2_api_login.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.dagger2_api_login.ApplicationDagger;
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.dagger.components.ActivityComponets;
@@ -93,14 +96,28 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         merlin.registerBindable(bindable);
     }
 
+    protected void loadAvatar(String url, ImageView ivAvatar) {
+        if (url == null || ivAvatar == null) {
+            return;
+        }
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontTransform()
+                .dontAnimate()
+                .into(ivAvatar);
+    }
+
     protected ActivityComponets getActivityComponent() {
 
         if (activityComponets == null) {
             activityComponets = DaggerActivityComponets.builder()
-                    .activityModule(new ActivityModule(this))
-                    .applicationComponets(ApplicationDagger.getInstance(this).getComponent())
-                    .build();
-        }
+                .activityModule(new ActivityModule(this))
+                .applicationComponets(ApplicationDagger.getInstance(this).getComponent())
+                .build();
+    }
         return activityComponets;
     }
 
@@ -111,7 +128,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         }
         compositeDisposable.add(disposable);
     }
-
 
 
     public void showToastDisconnect() {

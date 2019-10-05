@@ -20,8 +20,7 @@ public interface ApplicationComponets {
 
     @ApplicationContext
     Context context();
-
-    Application application();
+//    Application application();
 
     DataManager getDataManager();
 }

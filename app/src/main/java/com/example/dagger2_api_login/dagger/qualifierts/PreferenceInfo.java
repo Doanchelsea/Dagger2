@@ -9,5 +9,6 @@ import javax.inject.Qualifier;
 @Qualifier
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PostApi {
+public @interface PreferenceInfo {
+
 }

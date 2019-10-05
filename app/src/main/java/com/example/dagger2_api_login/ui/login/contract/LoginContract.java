@@ -10,9 +10,13 @@ public interface LoginContract {
 
         void onResult(Results results);
 
+
     }
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
+
         void checkExistDriverServer(String phoneNumberAuthenticated);
+
+        void saveUserInfoSharedPreferences(Results results);
     }
 
 }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Dagger2_Api_Login</string>
-    <string name="error_missing_network">mất kết nối</string>
-    <string name="common_noti_error_message">Lỗi</string>
+    <string name="error_missing_network">Mất kết nối mạng!</string>
+    <string name="common_noti_error_message">Kết nối thất bại, vui lòng thử lại!</string>
+    <string name="splash_cd_background">splash_cd_background</string>
 </resources>

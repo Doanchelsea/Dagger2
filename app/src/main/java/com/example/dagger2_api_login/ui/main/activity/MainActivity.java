@@ -1,22 +1,21 @@
-package com.example.dagger2_api_login.ui.login.activity;
+package com.example.dagger2_api_login.ui.main.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.BaseActivity;
-import com.example.dagger2_api_login.model.dagger.Dagger;
-import com.example.dagger2_api_login.model.dagger.Results;
-import com.example.dagger2_api_login.ui.login.contract.LoginContract;
-import com.example.dagger2_api_login.ui.login.presenter.LoginPresenter;
-import com.example.dagger2_api_login.ui.main.activity.MainActivity;
+import com.example.dagger2_api_login.model.dagger.UserInfo;
+import com.example.dagger2_api_login.ui.login.activity.LoginActivity;
+import com.example.dagger2_api_login.ui.main.contract.MainContract;
+import com.example.dagger2_api_login.ui.main.presenter.MainPresenter;
+import com.example.dagger2_api_login.ui.splash.activity.SplashActivity;
 import com.example.dagger2_api_login.widget.LoadingDialog;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
@@ -28,44 +27,47 @@ import com.novoda.merlin.NetworkStatus;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-public class LoginActivity extends BaseActivity implements LoginContract.View, Connectable, Disconnectable, Bindable {
+public class MainActivity extends BaseActivity implements MainContract.View, Connectable, Disconnectable, Bindable {
 
-    @BindView(R.id.edNumber)
-    EditText edNumber;
-    @BindView(R.id.btnLogin)
-    Button btnLogin;
-
-    @Inject
-    LoginPresenter presenter;
-
+    @BindView(R.id.btnDangXuat)
+    Button btnDangXuat;
+    @BindView(R.id.tvName)
+    TextView tvName;
+    @BindView(R.id.imgAvatar)
+    CircleImageView imgAvatar;
 
     public static void startActivity(Activity context) {
-        context.startActivity(new Intent(context, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        context.startActivity(new Intent(context, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         context.finish();
     }
 
+    @Inject
+    MainPresenter mainPresenter;
+
+    // Base Activity
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_main;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        registerBindable(this);
         registerConnectable(this);
         registerDisconnectable(this);
-        registerBindable(this);
     }
 
     @Override
     protected void attachView() {
-        presenter.attachView(this);
+        mainPresenter.attachView(this);
     }
 
     @Override
     protected void detachView() {
-        presenter.detachView();
+        mainPresenter.detachView();
     }
 
     @Override
@@ -82,32 +84,50 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
                 .build(this);
     }
 
+
     @Override
     protected void addEvents() {
-        addDisposable(RxView.clicks(btnLogin).subscribe(aVoid -> {
-            String edNumbe = edNumber.getText().toString().trim();
-            showProgress(true);
-            presenter.checkExistDriverServer(edNumbe);
+
+        addDisposable(RxView.clicks(btnDangXuat).subscribe(aVoid -> {
+            mainPresenter.SingUp();
+            ShowSplash();
         }));
     }
 
 
+
+    // MainContract + Base Contract
+    @Override
+    public void showUserInfo(UserInfo userInfo) {
+        loadAvatar(userInfo.getAvatar(),imgAvatar);
+        tvName.setText(userInfo.getFullName() + "\n" + userInfo.getAddress());
+    }
+
+
+    private void ShowSplash() {
+        LoginActivity.startActivity(this);
+        finish();
+    }
+
     @Override
     public void showProgress(boolean show) {
+
         if (show){
             LoadingDialog.getInstance().showLoading(this);
         }else {
             LoadingDialog.getInstance().hideLoading();
-
         }
     }
 
     @Override
     public void showError(int stringResId) {
-        Toast.makeText(context, stringResId, Toast.LENGTH_SHORT).show();
-        showProgress(false);
+
     }
 
+
+
+
+    // Merlin
     @Override
     public void onBind(NetworkStatus networkStatus) {
         if (!networkStatus.isAvailable()) {
@@ -117,7 +137,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
 
     @Override
     public void onConnect() {
-
+        mainPresenter.ShowUserInfoPresenter();
     }
 
     @Override
@@ -125,20 +145,4 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
         showProgress(false);
         showToastDisconnect();
     }
-
-
-
-    @Override
-    public void onResult(Results results) {
-        presenter.saveUserInfoSharedPreferences(results);
-        ShowMain();
-        showProgress(false);
-    }
-
-
-    private void ShowMain() {
-        MainActivity.startActivity(this);
-        finish();
-    }
-
 }

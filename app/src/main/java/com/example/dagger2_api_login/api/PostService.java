@@ -12,4 +12,5 @@ public interface PostService {
 
     @POST("user/checkuserexist")
     Observable<Dagger> login(@Body RequestBody body);
+
 }

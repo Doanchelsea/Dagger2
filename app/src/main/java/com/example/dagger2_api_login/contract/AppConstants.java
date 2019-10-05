@@ -6,4 +6,6 @@ public class AppConstants {
     public static final String BASE_POST_API_URL = "https://ego-local-252402.appspot.com";
     public static final String BASE_GET_API_URL = "" ;
 
+    public static final String COMMON_PREF_NAME = "ETRANS_PREF";
+
 }
