@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.dagger2_api_login.dagger.qualifierts.ApplicationContext;
 import com.example.dagger2_api_login.dagger.qualifierts.PreferenceInfo;
+import com.example.dagger2_api_login.model.dagger.Token;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
 import com.google.gson.Gson;
 
@@ -16,6 +17,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
 
     private static final String PREF_KEY_USER_INFO = "PREF_KEY_USER_INFO";
     private static final String PREF_KEY_IS_LOGGED_IN = "PREF_KEY_IS_LOGGED_IN ";
+    private static final String PREF_KEY_TOKEN_INFO = "PREF_KEY_TOKEN_INFO";
 
     private SharedPreferences mPrefs;
 
@@ -48,5 +50,22 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void clearUserInfo() {
         mPrefs.edit().remove(PREF_KEY_USER_INFO).apply();
+    }
+
+
+
+    @Override
+    public void setToken(Token token) {
+        mPrefs.edit().putString(PREF_KEY_TOKEN_INFO, new Gson().toJson(token)).apply();
+    }
+
+    @Override
+    public Token getToken() {
+        return new Gson().fromJson(mPrefs.getString(PREF_KEY_TOKEN_INFO, ""), Token.class);
+    }
+
+    @Override
+    public void clearToken() {
+        mPrefs.edit().remove(PREF_KEY_TOKEN_INFO).apply();
     }
 }

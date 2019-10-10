@@ -28,6 +28,7 @@ import com.novoda.merlin.NetworkStatus;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View, Connectable, Disconnectable, Bindable {
 

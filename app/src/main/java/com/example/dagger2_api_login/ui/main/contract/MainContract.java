@@ -13,6 +13,7 @@ public interface MainContract {
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
+
         void ShowUserInfoPresenter();
 
         void SingUp();

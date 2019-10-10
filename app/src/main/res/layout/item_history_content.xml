@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/item_history_content_tv_create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="10:12 - Cá nhân"
+        app:layout_constraintBottom_toBottomOf="@+id/item_history_content_tv_trip_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_history_content_tv_trip_status" />
+
+    <TextView
+        android:id="@+id/item_history_content_tv_trip_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#CF2F1C"
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Hủy" />
+
+    <View
+        android:id="@+id/item_history_content_view_divider_primary"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_tv_trip_status" />
+
+    <ImageView
+        android:id="@+id/item_history_content_iv_marker_pickup_point"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/home_cd_ic_marker"
+        android:src="@drawable/ic_marker_pickup_point"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_view_divider_primary" />
+
+    <ImageView
+        android:id="@+id/item_history_content_iv_dot_one"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/home_cd_ic_dot"
+        android:src="@drawable/ic_dot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_iv_marker_pickup_point" />
+
+    <ImageView
+        android:id="@+id/item_history_content_iv_marker_drof_off_one"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/home_cd_ic_marker_drof_off"
+        android:src="@drawable/ic_marker_drof_off"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_iv_dot_one" />
+
+    <ImageView
+        android:id="@+id/item_history_content_iv_dot_two"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/home_cd_ic_dot"
+        android:src="@drawable/ic_dot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_iv_marker_drof_off_one" />
+
+
+    <TextView
+        android:id="@+id/item_history_content_tv_pickup_point"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Ðình, Hà nội, Việt Nam"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_history_content_iv_marker_pickup_point"
+        app:layout_constraintTop_toTopOf="@id/item_history_content_iv_marker_pickup_point"
+        app:layout_constraintBottom_toBottomOf="@id/item_history_content_iv_marker_pickup_point"/>
+
+    <View
+        android:id="@+id/item_history_content_view_divider_one"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/item_history_content_tv_pickup_point"
+        app:layout_constraintEnd_toEndOf="@id/item_history_content_tv_pickup_point"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_tv_pickup_point"
+        app:layout_constraintBottom_toTopOf="@id/item_history_content_tv_drof_off_one"/>
+
+    <TextView
+        android:id="@+id/item_history_content_tv_drof_off_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_history_content_iv_marker_drof_off_one"
+        app:layout_constraintTop_toTopOf="@id/item_history_content_iv_marker_drof_off_one"
+        app:layout_constraintBottom_toBottomOf="@id/item_history_content_iv_marker_drof_off_one"/>
+
+    <View
+        android:id="@+id/item_history_content_view_divider_two"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/item_history_content_tv_drof_off_one"
+        app:layout_constraintEnd_toEndOf="@id/item_history_content_tv_drof_off_one"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_tv_drof_off_one"
+        app:layout_constraintBottom_toTopOf="@id/item_history_content_tv_drof_off_two"/>
+
+
+    <ImageView
+        android:id="@+id/item_history_content_iv_marker_drof_off_two"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/home_cd_ic_marker_drof_off"
+        android:src="@drawable/ic_marker_drof_off"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_history_content_iv_dot_two" />
+
+    <TextView
+        android:id="@+id/item_history_content_tv_drof_off_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_history_content_iv_marker_drof_off_two"
+        app:layout_constraintTop_toTopOf="@id/item_history_content_iv_marker_drof_off_two"
+        app:layout_constraintBottom_toBottomOf="@id/item_history_content_iv_marker_drof_off_two"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

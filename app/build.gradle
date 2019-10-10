@@ -90,4 +90,10 @@ dependencies {
 
     // circleimageview
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    // material
+    implementation 'com.google.android.material:material:1.0.0-alpha1'
+    // Base BaseRecyclerViewAdapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45-androidx'
+
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

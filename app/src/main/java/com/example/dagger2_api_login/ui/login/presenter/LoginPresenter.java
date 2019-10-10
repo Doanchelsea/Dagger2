@@ -1,6 +1,7 @@
 package com.example.dagger2_api_login.ui.login.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.RxPresenter;
@@ -45,7 +46,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.View>
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
                 (new JSONObject(httpBody)).toString());
 
-
         Disposable disposable = dataManager.login(body)
                 .flatMap(loginJsonResult -> Observable.just(loginJsonResult.getResults()))
                 .subscribeOn(Schedulers.io())
@@ -65,14 +65,12 @@ public class LoginPresenter extends RxPresenter<LoginContract.View>
         addSubscribe(disposable);
     }
 
-
     @Override
     public void saveUserInfoSharedPreferences(Results results) {
-
         if (results == null) {
             mView.showError(R.string.common_noti_error_message);
             return;
         }
-        dataManager.updateUserInfoSharedPreference(results.getUserInfo(), DRIVER_LOGGED_IN);
+        dataManager.updateUserInfoSharedPreference(results.getUserInfo(),results.getToken(), DRIVER_LOGGED_IN);
     }
 }

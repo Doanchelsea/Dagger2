@@ -17,6 +17,7 @@ public class MainPresenter extends RxPresenter<MainContract.View>
         this.dataManager = manager;
     }
 
+
     @Override
     public void ShowUserInfoPresenter() {
         UserInfo userInfo = dataManager.getUserInfo();

@@ -35,6 +35,11 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Inject
     SplashPresenter splashPresenter;
 
+    public static void startActivity(Activity context) {
+        context.startActivity(new Intent(context, SplashActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        context.finish();
+    }
+
 
     @Override
     protected int getLayoutId() {
@@ -130,11 +135,13 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     public void onConnect() {
         splashPresenter.saveDeviceIdSharedPreferences();
         showProgress(true);
+
     }
 
     @Override
     public void onDisconnect() {
         showProgress(false);
+        showToastDisconnect();
     }
 
 

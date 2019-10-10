@@ -2,5 +2,24 @@
     <string name="app_name">Dagger2_Api_Login</string>
     <string name="error_missing_network">Mất kết nối mạng!</string>
     <string name="common_noti_error_message">Kết nối thất bại, vui lòng thử lại!</string>
+    <string name="common_noti_error">Thất bại</string>
     <string name="splash_cd_background">splash_cd_background</string>
+
+    <string name="home_cd_ic_call">home_cd_ic_call</string>
+    <string name="home_cd_ic_location">home_cd_ic_location</string>
+    <string name="home_cd_ic_car">home_cd_ic_car</string>
+    <string name="home_cd_ic_dot">home_cd_ic_dot</string>
+    <string name="home_cd_ic_marker">home_cd_ic_marker</string>
+    <string name="home_noti_cancel_trip_success">Bỏ qua thành công</string>
+    <string name="home_dialog_button_text_call">Gọi</string>
+    <string name="home_dialog_button_text_cancel">Hủy bỏ</string>
+    <string name="home_dialog_label_hotline">1900 1918</string>
+    <string name="home_dialog_label_call">Gọi</string>
+    <string name="home_label_status_driver_offline">Bạn đang ngoại tuyến</string>
+    <string name="home_label_status_driver_online">Bạn đang trực tuyến</string>
+    <string name="home_cd_ic_marker_drof_off">home_cd_ic_marker_drof_off</string>
+
+    <string name="history_label_trip_status_cancel">Hủy</string>
+    <string name="history_label_trip_status_success">Hoàn thành</string>
+
 </resources>

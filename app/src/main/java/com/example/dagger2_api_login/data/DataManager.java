@@ -4,7 +4,9 @@ import com.example.dagger2_api_login.api.PostService;
 
 import com.example.dagger2_api_login.data.local.PreferencesHelper;
 import com.example.dagger2_api_login.model.dagger.Dagger;
+import com.example.dagger2_api_login.model.dagger.Token;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
+import com.example.dagger2_api_login.model.history.History;
 
 import javax.inject.Inject;
 
@@ -27,6 +29,16 @@ public class DataManager implements PostService, PreferencesHelper {
         return postService.login(body);
     }
 
+    @Override
+    public Observable<History> history(String tokenKey, RequestBody body) {
+        return postService.history(tokenKey,body);
+    }
+
+    @Override
+    public Observable<Dagger> getLastStatusDriver(String tokenKey) {
+        return postService.getLastStatusDriver(tokenKey);
+    }
+
 
     /*----------------------------------Prefs Helper----------------------------------*/
     @Override
@@ -39,6 +51,8 @@ public class DataManager implements PostService, PreferencesHelper {
         return preferencesHelper.IsLoggedIn();
     }
 
+
+    // UserInfo
     @Override
     public void setUserInfo(UserInfo userInfo) {
         preferencesHelper.setUserInfo(userInfo);
@@ -54,13 +68,31 @@ public class DataManager implements PostService, PreferencesHelper {
         preferencesHelper.clearUserInfo();
     }
 
-    public void updateUserInfoSharedPreference(UserInfo userInfo, boolean isLoggedIn) {
-        setUserInfo(userInfo);
-        setLoggedIn(isLoggedIn);
+    // Token
+    @Override
+    public void setToken(Token token) {
+        preferencesHelper.setToken(token);
+    }
+
+    @Override
+    public Token getToken() {
+        return preferencesHelper.getToken();
+    }
+
+    @Override
+    public void clearToken() {
+        preferencesHelper.clearToken();
     }
 
 
+    public void updateUserInfoSharedPreference(UserInfo userInfo,Token token, boolean isLoggedIn) {
+        setUserInfo(userInfo);
+        setToken(token);
+        setLoggedIn(isLoggedIn);
+    }
+
     public void clearAllUserInfo() {
         clearUserInfo();
+        clearToken();
     }
 }

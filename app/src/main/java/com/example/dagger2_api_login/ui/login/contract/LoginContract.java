@@ -10,7 +10,6 @@ public interface LoginContract {
 
         void onResult(Results results);
 
-
     }
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
 

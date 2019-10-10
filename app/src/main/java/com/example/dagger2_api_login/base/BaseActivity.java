@@ -1,7 +1,10 @@
 package com.example.dagger2_api_login.base;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -111,7 +114,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     }
 
     protected ActivityComponets getActivityComponent() {
-
         if (activityComponets == null) {
             activityComponets = DaggerActivityComponets.builder()
                 .activityModule(new ActivityModule(this))
@@ -128,7 +130,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         }
         compositeDisposable.add(disposable);
     }
-
 
     public void showToastDisconnect() {
         Toasty.error(this, getString(R.string.error_missing_network), 200).show();
