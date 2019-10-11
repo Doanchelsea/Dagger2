@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.BaseActivity;
+import com.example.dagger2_api_login.model.dagger.Results;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
+import com.example.dagger2_api_login.model.history.ResultsHis;
 import com.example.dagger2_api_login.ui.account.fragment.AccountFragment;
 import com.example.dagger2_api_login.ui.history.fragment.HistoryFragment;
 import com.example.dagger2_api_login.ui.home.fragment.HomeFragment;
@@ -40,7 +43,9 @@ import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity implements MainContract.View, Connectable, Disconnectable, Bindable {
-
+    private static final String EXTRA_TRIP_CODE = "EXTRA_TRIP_CODE";
+    private static final String EXTRA_TRIP_STATUS = "EXTRA_TRIP_STATUS";
+    private static final String EXTRA_TRIP_RESULTS = "EXTRA_TRIP_RESULTS";
 
 
     public static void startActivity(Activity context) {

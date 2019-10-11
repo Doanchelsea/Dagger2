@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@color/bg_home">
+
+    <View
+        android:id="@+id/fakeStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/toolBar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fakeStatusBar">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/activity_history_detail_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/activity_history_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <ImageView
+                    android:id="@+id/activity_history_detail_iv_back"
+                    android:layout_width="@dimen/space_24"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start|center_horizontal"
+                    android:contentDescription="@string/account_cd_ic_back"
+                    android:src="@drawable/ic_arrow" />
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_create_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_18"
+                    tools:text="12/06/2019 - 09:32" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/history_detail_container_user_info"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_120"
+            android:layout_marginStart="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_marginEnd="@dimen/space_10"
+            android:background="@color/white"
+            android:padding="@dimen/space_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_history_detail_app_bar">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/history_detail_iv_avatar_user"
+                android:layout_width="@dimen/space_80"
+                android:layout_height="@dimen/space_80"
+                app:civ_border_color="@color/blue"
+                app:civ_border_width="@dimen/space_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars[3]" />
+
+            <TextView
+                android:id="@+id/history_detail_tv_full_name_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_16"
+                android:layout_marginBottom="@dimen/space_8"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/history_detail_iv_avatar_user"
+                app:layout_constraintStart_toEndOf="@id/history_detail_iv_avatar_user"
+                app:layout_constraintTop_toTopOf="@id/history_detail_iv_avatar_user"
+                tools:text="Nguyễn Đình Đoàn"
+                android:layout_marginLeft="@dimen/space_16" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_10"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/history_detail_container_user_info">
+
+            <RelativeLayout
+                android:id="@+id/rlPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_10"
+                android:layout_marginEnd="@dimen/space_10"
+                android:background="@color/white"
+                android:gravity="center"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/text_price_detail"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_14" />
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_estimated_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_5"
+                    android:layout_toRightOf="@+id/textView"
+                    android:text="0 đ"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_orange"
+                    android:textSize="@dimen/text_size_18" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/activity_history_detail_view_divider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_05"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rlPrice" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_10"
+                android:layout_marginEnd="@dimen/space_10"
+                android:background="@color/white"
+                android:padding="@dimen/space_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_history_detail_view_divider">
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_create_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/activity_history_detail_tv_trip_status"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/activity_history_detail_tv_trip_status"
+                    tools:text="10:12 - Cá nhân" />
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_trip_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/history_color_bg_trip_status_cancel"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingTop="@dimen/space_3"
+                    android:paddingEnd="@dimen/space_10"
+                    android:paddingBottom="@dimen/space_3"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Hủy" />
+
+                <View
+                    android:id="@+id/activity_history_detail_view_divider_primary"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_05"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:layout_marginBottom="@dimen/space_8"
+                    android:background="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_tv_trip_status" />
+
+                <ImageView
+                    android:id="@+id/activity_history_detail_iv_marker_pickup_point"
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_20"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:contentDescription="@string/home_cd_ic_marker"
+                    android:src="@drawable/ic_marker_pickup_point"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_view_divider_primary" />
+
+                <ImageView
+                    android:id="@+id/activity_history_detail_iv_dot_one"
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_20"
+                    android:contentDescription="@string/home_cd_ic_dot"
+                    android:src="@drawable/ic_dot"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_iv_marker_pickup_point" />
+
+                <ImageView
+                    android:id="@+id/activity_history_detail_iv_marker_drof_off_one"
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_20"
+                    android:contentDescription="@string/home_cd_ic_marker_drof_off"
+                    android:src="@drawable/ic_marker_drof_off"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_iv_dot_one" />
+
+                <ImageView
+                    android:id="@+id/activity_history_detail_iv_dot_two"
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_20"
+                    android:contentDescription="@string/home_cd_ic_dot"
+                    android:src="@drawable/ic_dot"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_iv_marker_drof_off_one" />
+
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_pickup_point"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/activity_history_detail_iv_marker_pickup_point"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/activity_history_detail_iv_marker_pickup_point"
+                    app:layout_constraintTop_toTopOf="@id/activity_history_detail_iv_marker_pickup_point"
+                    tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Ðình, Hà nội, Việt Nam" />
+
+                <View
+                    android:id="@+id/activity_history_detail_view_divider_one"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_05"
+                    android:background="@color/gray"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/activity_history_detail_tv_drof_off_one"
+                    app:layout_constraintEnd_toEndOf="@id/activity_history_detail_tv_pickup_point"
+                    app:layout_constraintStart_toStartOf="@id/activity_history_detail_tv_pickup_point"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_tv_pickup_point" />
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_drof_off_one"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/activity_history_detail_iv_marker_drof_off_one"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/activity_history_detail_iv_marker_drof_off_one"
+                    app:layout_constraintTop_toTopOf="@id/activity_history_detail_iv_marker_drof_off_one"
+                    tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam" />
+
+                <View
+                    android:id="@+id/activity_history_detail_view_divider_two"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_05"
+                    android:background="@color/gray"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/activity_history_detail_tv_drof_off_two"
+                    app:layout_constraintEnd_toEndOf="@id/activity_history_detail_tv_drof_off_one"
+                    app:layout_constraintStart_toStartOf="@id/activity_history_detail_tv_drof_off_one"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_tv_drof_off_one" />
+
+
+                <ImageView
+                    android:id="@+id/activity_history_detail_iv_marker_drof_off_two"
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_20"
+                    android:contentDescription="@string/home_cd_ic_marker_drof_off"
+                    android:src="@drawable/ic_marker_drof_off"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_history_detail_iv_dot_two" />
+
+                <TextView
+                    android:id="@+id/activity_history_detail_tv_drof_off_two"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/activity_history_detail_iv_marker_drof_off_two"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/activity_history_detail_iv_marker_drof_off_two"
+                    app:layout_constraintTop_toTopOf="@id/activity_history_detail_iv_marker_drof_off_two"
+                    tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

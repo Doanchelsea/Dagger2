@@ -4,6 +4,7 @@ package com.example.dagger2_api_login.api;
 import com.example.dagger2_api_login.contract.AppConstants;
 import com.example.dagger2_api_login.model.dagger.Dagger;
 import com.example.dagger2_api_login.model.history.History;
+import com.example.dagger2_api_login.model.historyDetail.HistoryDetail;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -22,7 +23,10 @@ public interface PostService {
 
     // requesrt Api khi dùng SharedPreferences chuyển màn sang MainActivity
     @POST("user/getlaststatus")
-    Observable<Dagger> getLastStatusDriver(@Header(AppConstants.COMMON_ETRANS_TOKEN) String tokenKey);
+    Observable<History> getLastStatusDriver(@Header(AppConstants.COMMON_ETRANS_TOKEN) String tokenKey);
 
+    @POST("user/getHistoryTripDetail/v2")
+    Observable<HistoryDetail> historyDetail(@Header(AppConstants.COMMON_ETRANS_TOKEN) String tokenKey,
+                                            @Body RequestBody body);
 
 }

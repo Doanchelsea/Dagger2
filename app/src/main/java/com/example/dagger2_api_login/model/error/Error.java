@@ -1,17 +1,17 @@
 
-package com.example.dagger2_api_login.model.history;
+package com.example.dagger2_api_login.model.error;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class History {
+public class Error {
 
     @SerializedName("code")
     @Expose
-    private Long code;
+    private Integer code;
     @SerializedName("count")
     @Expose
-    private Long count;
+    private Integer count;
     @SerializedName("status")
     @Expose
     private String status;
@@ -20,21 +20,21 @@ public class History {
     private String type;
     @SerializedName("results")
     @Expose
-    private ResultsHis results;
+    private Results results;
 
-    public Long getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(Long code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
-    public Long getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(Long count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
@@ -54,11 +54,12 @@ public class History {
         this.type = type;
     }
 
-    public ResultsHis getResults() {
+    public Results getResults() {
         return results;
     }
 
-    public void setResults(ResultsHis results) {
+    public void setResults(Results results) {
         this.results = results;
     }
+
 }

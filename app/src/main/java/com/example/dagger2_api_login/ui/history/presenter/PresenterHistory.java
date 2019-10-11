@@ -46,20 +46,17 @@ public class PresenterHistory extends RxPresenter<ContractHistory.View>
     public void getHistoryTripForDriver(String page, String count) {
 
         if (StringUtils.isEmpty(page) || StringUtils.isEmpty(count)) {
-            Logger.w("page, count null or empty");
             mView.showError(R.string.common_noti_error);
             return;
         }
         Token token = dataManager.getToken();
         if (token == null) {
-            Logger.w("token null");
             mView.showError(R.string.common_noti_error);
             return;
         }
 
         String tokenKey = dataManager.getToken().getTokenKey();
         if (StringUtils.isEmpty(tokenKey)) {
-            Logger.w("token key null or empty");
             mView.showError(R.string.common_noti_error);
             return;
         }

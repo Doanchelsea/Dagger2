@@ -6,9 +6,11 @@ import com.example.dagger2_api_login.model.dagger.Results;
 import com.example.dagger2_api_login.model.dagger.Token;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
 import com.example.dagger2_api_login.ui.splash.contract.SplashContract;
+import com.example.dagger2_api_login.untils.ErrorHandler;
 import com.example.dagger2_api_login.untils.StringUtils;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+
 
 import javax.inject.Inject;
 
@@ -48,12 +50,10 @@ public class SplashPresenter extends RxPresenter<SplashContract.View>
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         (beans) -> {
-                            Logger.json(new Gson().toJson(beans));
                             mView.showMain();
                         },
                         (error) -> {
-                            Logger.w("GET LAST STATUS ERROR: %s", error);
-//                            mView.showError(R.string.common_noti_error_message);
+                            mView.showErrorLastStatus(ErrorHandler.errorParser(error),dataManager);
                         }
                 );
 

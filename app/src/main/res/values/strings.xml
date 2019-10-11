@@ -3,7 +3,62 @@
     <string name="error_missing_network">Mất kết nối mạng!</string>
     <string name="common_noti_error_message">Kết nối thất bại, vui lòng thử lại!</string>
     <string name="common_noti_error">Thất bại</string>
+    <string name="common_label_no_connection">No connection</string>
+    <string name="common_label_back_online">Back online</string>
+    <string name="common_noti_error_missing_google_play_services">Google Play services missing or without correct permission</string>
+    <string name="common_noti_question_back_message">Làm ơn nhấn lần nữa để thoát</string>
+    <string name="common_noti_server_error">Máy chủ lỗi</string>
+    <string name="common_loading">Loading</string>
+    <string name="common_customer_cancel_trip">Khách hàng hủy chuyến</string>
+    <string name="common_label_estimated_price">%s đ</string>
+    <string name="common_label_estimated_distance_metter">%s m</string>
+    <string name="common_label_estimated_distance_kilo_metter">%s km</string>
+    <string name="common_label_estimated_duration_second">%s giây</string>
+    <string name="common_label_estimated_duration_minute">%s phút</string>
+    <string name="common_label_estimated_duration_hour">%s giờ</string>
+    <string name="common_noti_update_info_success">Cập nhật thông tin thành công</string>
+    <string name="common_noti_email_empty">Email không được để trống</string>
+    <string name="common_noti_full_name_empty">Tên không được để trống</string>
+    <string name="common_noti_description_empty">Mô tả không được để trống</string>
+    <string name="common_noti_wrong_email">Email không hợp lệ</string>
+    <string name="common_noti_wrong_full_name">Tên không hợp lệ</string>
+    <!--common string end-->
+
+    <!--splash screen start-->
     <string name="splash_cd_background">splash_cd_background</string>
+    <string name="login_other_device">Tài khoản đã đăng nhập ở thiết bị khác</string>
+    <!--splash screen end-->
+
+    <!--login screen start-->
+    <string name="login_button_text_sign_in">Đăng nhập</string>
+    <string name="login_cd_background">login_cd_background</string>
+    <string name="login_digit_phone_number">0123456789</string>
+    <string name="login_hint_phone_number">Nhập số điện thoại</string>
+    <string name="login_label_state_code">+84</string>
+    <string name="login_noti_enter_phone_number_empty">Số điện thoại không được để trống</string>
+    <string name="login_noti_user_not_permission_driver">Bạn chưa có quyền tài xế</string>
+    <string name="login_noti_wrong_phone_number">Số điện thoại không đúng</string>
+    <!--login screen end-->
+
+    <!--register screen start-->
+    <string name="register_cd_ic_back">register_cd_ic_back</string>
+    <string name="register_button_text_confirm">Xác nhận</string>
+    <string name="register_label_full_name">Nhập thông tin của bạn</string>
+    <string name="register_toolbar_title">Đăng ký</string>
+    <string name="register_hint_date_of_birth">Nhập ngày sinh nhật</string>
+    <string name="register_hint_address">Nhập địa chỉ</string>
+    <string name="register_hint_full_name">Nhập tên đầy đủ</string>
+    <!--register screen end-->
+
+    <!--main screen start-->
+    <string name="main_menu_text_home">Trang chủ</string>
+    <string name="main_menu_text_history">Lịch sử</string>
+    <string name="main_menu_text_notifications">Thông báo</string>
+    <string name="main_menu_text_account">Tài khoản</string>
+    <string name="main_menu_text_wallet">Ví</string>
+    <!--main screen end-->
+
+    <!--home screen start-->
 
     <string name="home_cd_ic_call">home_cd_ic_call</string>
     <string name="home_cd_ic_location">home_cd_ic_location</string>
@@ -18,8 +73,207 @@
     <string name="home_label_status_driver_offline">Bạn đang ngoại tuyến</string>
     <string name="home_label_status_driver_online">Bạn đang trực tuyến</string>
     <string name="home_cd_ic_marker_drof_off">home_cd_ic_marker_drof_off</string>
+    <!--home screen end-->
 
+    <!--trip activity start-->
+    <string name="trip_cd_ic_call_phone">trip_cd_ic_call_phone</string>
+    <string name="trip_cd_ic_send_message">trip_cd_ic_send_message</string>
+    <!--trip activity end-->
+
+    <!--trip notification start-->
+    <string name="trip_notification_label_new_trip">Bạn có một chuyến mới</string>
+    <string name="trip_notification_button_text_reject">Bỏ qua</string>
+    <string name="trip_notification_button_text_accept">Chấp nhận</string>
+    <string name="trip_notification_cd_ic_money">trip_notification_cd_ic_money</string>
+    <!--trip notification end-->
+
+    <!--history screen start-->
+    <string name="history_cd_ic_dot">history_cd_ic_dot</string>
+    <string name="history_cd_ic_marker">history_cd_ic_marker</string>
     <string name="history_label_trip_status_cancel">Hủy</string>
     <string name="history_label_trip_status_success">Hoàn thành</string>
+    <string name="history_toolbar_title">Lịch sử chuyến đi</string>
+    <string name="history_label_create_time">%s - Cá nhân</string>
+    <string name="text_price_detail">Giá cước:</string>
+    <!--history screen end-->
 
+    <!--wallet screen start-->
+    <!--wallet screen end-->
+
+    <!--notification screen start-->
+    <string name="notification_cd_ic_thumbnail">notification_cd_ic_thumbnail</string>
+    <string name="notification_label_delete">Xóa</string>
+    <string name="notification_toolbar_title">Thông báo</string>
+    <string name="notification_noti_clear_item_success">Xóa thông báo thành công</string>
+    <string name="notification_noti_clear_all_success">Xóa tất cả thông báo thành công</string>
+    <string name="notification_cd_ic_delete">notification_cd_ic_delete</string>
+    <!--notification screen end-->
+
+    <!--account screen start-->
+    <string name="account_cd_ic_back">account_cd_ic_back</string>
+    <string name="account_cd_ic_edit">account_cd_ic_edit</string>
+    <string name="account_label_user_type">Tài xế</string>
+    <string name="account_label_logout">Đăng xuất</string>
+    <string name="account_label_language">Ngôn ngữ</string>
+    <string name="account_label_contact">Liên hệ</string>
+    <string name="account_label_profile">Hồ sơ</string>
+    <string name="account_label_bill">Hóa đơn</string>
+    <string name="account_label_new_trip">Chuyến mới</string>
+    <string name="account_label_number_of_booking">LƯỢT ĐẶT</string>
+    <string name="account_label_reward_points">ĐIỂM THƯỞNG</string>
+    <string name="account_label_balance_account">SỐ DƯ TK</string>
+    <string name="account_noti_logout_successful">Đăng xuất thành công</string>
+    <string name="account_cd_ic_security">account_cd_ic_security</string>
+    <string name="account_cd_ic_bill">account_cd_ic_bill</string>
+    <string name="account_cd_ic_profile">account_cd_ic_profile</string>
+    <string name="account_cd_ic_contact">account_cd_ic_contact</string>
+    <string name="account_cd_ic_language">account_cd_ic_language</string>
+    <string name="account_cd_ic_logout">account_cd_ic_logout</string>
+    <!--account screen end-->
+
+    <!--cancel trip screen start-->
+    <string name="cancel_trip_cd_ic_back">cancel_trip_cd_ic_back</string>
+    <string name="cancel_trip_toolbar_title">Hủy chuyến</string>
+    <string name="cancel_trip_radio_text_reason_1">Lý do 1</string>
+    <string name="cancel_trip_radio_text_reason_2">Lý do 2</string>
+    <string name="cancel_trip_radio_text_reason_3">Lý do 3</string>
+    <string name="cancel_trip_radio_text_reason_other">Lý do khác</string>
+    <string name="cancel_trip_button_text_cancel_trip">Hủy chuyến</string>
+    <string name="cancel_trip_noti_success">Hủy chuyến thành công</string>
+    <string name="cancel_trip_hint_other_reason">Nhập lý do</string>
+    <string name="reason_cancel_trip">Vui lòng nhập lý do hủy chuyến</string>
+    <string name="reason_choose_cancel_trip">Vui lòng chọn lý do hủy chuyến</string>
+    <!--cancel trip screen end-->
+
+    <!--dialog trip detail start-->
+    <string name="trip_detail_title_customer">Khách hàng</string>
+    <string name="trip_detail_title_trip">Chuyến đi</string>
+    <string name="trip_detail_button_text_close">Đóng</string>
+    <string name="trip_detail_button_text_cancel_trip">Hủy chuyến</string>
+    <string name="trip_detail_noti_don_cancel_trip">Không được em ơi</string>
+    <!--dialog trip detail end-->
+
+    <!--layout trip info start-->
+    <string name="trip_info_cd_ic_distance">trip_info_cd_ic_distance</string>
+    <string name="trip_info_cd_ic_duration">trip_info_cd_ic_duration</string>
+    <string name="trip_info_cd_ic_price">trip_info_cd_ic_price</string>
+    <string name="trip_info_label_distance">Số km</string>
+    <string name="trip_info_label_duration">Thời gian</string>
+    <string name="trip_info_label_price">Tiền mặt</string>
+    <string name="trip_button_text_start_trip">Bắt đầu chuyến</string>
+    <string name="trip_button_text_drof_trip">Kết thúc chuyến</string>
+    <string name="trip_button_text_payment">Tính tiền</string>
+    <string name="trip_button_text_skip">Bỏ qua</string>
+    <!--layout trip info end-->
+
+    <!--common loading mView start-->
+    <string name="loading_view_label_title">Loading</string>
+    <!--common loading mView end-->
+
+    <!--layout end trip start-->
+    <string name="end_trip_button_text_finish">Kết thúc</string>
+    <!--layout end trip end-->
+
+    <!--profile activity start-->
+    <string name="profile_cd_ic_account_info">profile_cd_ic_account_info</string>
+    <string name="profile_cd_ic_reward_points">profile_cd_ic_reward_points</string>
+    <string name="profile_cd_ic_promotion">profile_cd_ic_promotion</string>
+    <string name="profile_cd_ic_help">profile_cd_ic_help</string>
+    <string name="profile_cd_ic_feedback">profile_cd_ic_feedback</string>
+    <string name="profile_label_account_info">Thông tin tài khoản</string>
+    <string name="profile_label_modify_info">Chỉnh sửa thông tin</string>
+    <string name="profile_label_reward_points">Điểm thưởng</string>
+    <string name="profile_label_promotion">Khuyễn mãi</string>
+    <string name="profile_label_help">Giúp đỡ</string>
+    <string name="profile_label_feedback">Phản hồi</string>
+    <string name="profile_toolbar_title">Tài khoản</string>
+    <!--profile activity end-->
+
+    <!--update info activity start-->
+    <string name="update_info_cd_ic_back">update_info_cd_ic_back</string>
+    <string name="update_info_toolbar_title">Hồ sơ</string>
+    <string name="update_info_label_save">Lưu</string>
+    <string name="update_info_label_name_display">Tên hiển thị*:</string>
+    <string name="update_info_hint_name">Tên</string>
+    <string name="update_info_label_phone_display">Số điện thoại*:</string>
+    <string name="update_info_hint_phone_number">Số điện thoại</string>
+    <string name="update_info_label_email">Email:</string>
+    <string name="update_info_hint_email">Email</string>
+    <string name="update_info_label_description">Ghi chú:</string>
+    <string name="update_info_hint_description">Mô tả</string>
+    <string name="update_info_digit_description">qwertyuiopasdfghjklzxcvbnm1234567890</string>
+    <string name="update_info_digit_full_name">qwertyuiopasdfghjklzxcvbnm_1234567890</string>
+    <string name="update_infor_value_phone_number">0%s</string>
+    <!--update info activity end-->
+
+    <!--wallet activity start-->
+    <string name="wallet_toolbar_title">Ví</string>
+    <string name="wallet_cd_ic_thumbnail">wallet_cd_ic_thumbnail</string>
+    <string name="wallet_total_money">Số tiền bị trừ là: %s</string>
+    <string name="wallet_label_total_deposit">Tổng tiền: %sđ</string>
+    <!--wallet activity end-->
+
+    <!--confirm dialog start-->
+    <string name="confirm_dialog_label_clear_all_notification">Bạn muốn xóa tất cả thông báo ?</string>
+    <string name="confirm_dialog_button_text_cancel">Hủy bỏ</string>
+    <string name="confirm_dialog_button_text_clear">Xóa</string>
+    <!--confirm dialog end-->
+
+    <!--wallet detail start-->
+    <string name="wallet_detail_toolbar_title">Chi tiết giao dịch</string>
+    <string name="wallet_detail_total_money">Trừ tiền: %sVNĐ</string>
+    <string name="wallet_detail_transaction_id">Mã giao dịch: %s</string>
+    <string name="wallet_detail_create_date">Thời gian thực hiện: %s</string>
+    <string name="wallet_detail_transaction_content">Nội dung: %s</string>
+    <string name="wallet_detail_cd_ic_back">wallet_detail_cd_ic_back</string>
+    <!--wallet detail end-->
+
+    <!--language activity start-->
+    <string name="language_toolbar_title">Thay đổi ngôn ngữ</string>
+    <string name="language_label_vietnamese">Tiếng Việt</string>
+    <string name="language_cd_ic_viet_nam_flag">language_cd_ic_viet_nam</string>
+    <string name="language_cd_ic_tick_black">language_cd_ic_tick_black</string>
+    <string name="language_cd_ic_english_flag">language_cd_ic_english_flag</string>
+    <string name="language_label_english">English</string>
+    <!--language activity end-->
+
+    <!--notification info start-->
+    <string name="notification_info_button_text_close">Đóng</string>
+    <!--notification info end-->
+
+    <!--new trip activity start-->
+    <string name="new_trip_toolbar_title">Chuyến mới</string>
+    <!--new trip activity end-->
+
+    <!--change avatar dialog start-->
+    <string name="change_avatar_button_text_camera">Camera</string>
+    <string name="change_avatar_button_text_gallery">Gallery</string>
+    <!--change avatar dialog end-->
+
+    <!--item new trip start-->
+    <string name="item_new_trip_cd_ic_car">item_new_trip_cd_ic_car</string>
+    <string name="item_new_trip_car_rental_self">Chuyến xe tự lái</string>
+    <string name="item_new_trip_start_date">Khởi hành: %s</string>
+    <string name="item_new_trip_end_date">Kết thúc: %s</string>
+    <string name="item_new_trip_estimated_price">Giá tiền: %s VND</string>
+    <string name="new_trip_detail_cd_ic_back">new_trip_detail_cd_ic_back</string>
+    <string name="new_trip_detail_toolbar_title">Thông tin chuyến đi</string>
+    <string name="new_trip_detail_tv_route">Lộ trình</string>
+    <string name="driver_location_start">Điểm đầu:" "</string>
+    <string name="driver_location_finish">Điểm kết thúc:" "</string>
+    <string name="driver_date_start">Ngày bắt đầu:" "</string>
+    <string name="driver_date_finish">Ngày kết thúc:" "</string>
+    <string name="driver_infor_trip">Các thông số</string>
+    <string name="driver_trip_type">Số chỗ:" "</string>
+    <string name="driver_number_vehicle">Số xe:" "</string>
+    <string name="driver_estimated_distance">Khoảng cách:" "</string>
+    <string name="amount_due_from_customer">Số tiền cần thu từ khách hàng</string>
+    <string name="your_amount">Số tiền bạn nhận được</string>
+    <string name="receiving_vehicle_location">Điểm nhận xe</string>
+    <string name="dropoff_locations">Điểm trả xe</string>
+    <string name="pickup">Điểm đến</string>
+    <string name="driver_wating">Nếu nhận chuyến và không thực hiện đi chuyến đã nhận sẽ bị phạt 200% giá trị chuyến đi</string>
+    <string name="text_complete">Xác nhận thành công</string>
+    <string name="your_car_is_not_suitable_for_this_trip">Xe của bạn không phù hợp với chuyến đi này</string>
+    <string name="this_trip_has_been_received">Đã có người nhận chuyến này</string>
 </resources>

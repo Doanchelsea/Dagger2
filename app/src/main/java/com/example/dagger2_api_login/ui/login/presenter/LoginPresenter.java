@@ -52,9 +52,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.View>
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         (results) -> {
-
                             mView.onResult(results);
-
                         },
                         (error) -> {
 
@@ -72,5 +70,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.View>
             return;
         }
         dataManager.updateUserInfoSharedPreference(results.getUserInfo(),results.getToken(), DRIVER_LOGGED_IN);
+        mView.showMain();
     }
 }

@@ -1,10 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#FFC70F</color>
+    <color name="colorPrimaryDark">#FFC70F</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="black">#000000</color>
+    <color name="gray_new">@android:color/darker_gray</color>
+    <color name="gray">#D8D8D8</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_50">#7dffffff</color>
+    <color name="white_80">#F8F8F8</color>
+    <color name="transparent_50">#50000000</color>
+    <color name="transparent_20">#20000000</color>
+
+    <color name="account_color_border_avatar">#F7E564</color>
+    <color name="account_color_full_name">#444440</color>
+    <color name="account_color_text_menu">#404040</color>
+    <color name="bg_color_alert_dialog">#4CAF50</color>
+    <color name="bg_color_status_network">#4E4444</color>
+    <color name="cancel_trip_color_bg_button">#F44336</color>
+    <color name="cancel_trip_color_radio_button">#4CAF50</color>
+    <color name="color_back_switch_button">#43d95d</color>
+    <color name="color_bg_btn_cancel_trip">#4CAF50</color>
+    <color name="color_bg_dialog_trip_detail_title">#FFF9C4</color>
+    <color name="color_bg_new_trip_notification">#4CAF50</color>
+    <color name="color_btn_drof_trip">#4CAF50</color>
+    <color name="color_btn_end_trip">#4CAF50</color>
+    <color name="color_btn_payment_trip">#4CAF50</color>
+    <color name="color_btn_skip_trip">#263238</color>
+    <color name="color_btn_start_trip">#4CAF50</color>
+    <color name="color_loading_indicator_new_trip">#8BC34A</color>
+    <color name="color_server_error">#302929</color>
+    <color name="color_text_active_bottom_navigation_view">#304FFE</color>
+    <color name="common_loading_view_color_loading_indicator">#3F51B5</color>
+    <color name="history_color_bg_create_date">#4CAF50</color>
+    <color name="history_color_bg_trip_status_cancel">#CF2F1C</color>
+    <color name="history_color_bg_trip_status_ok">#ff00b4b1</color>
+    <color name="history_detail_color_bg_user_info">#4CAF50</color>
+    <color name="history_detail_color_text_price">#B71C1C</color>
+    <color name="history_fragment_bg_color">#AED581</color>
+    <color name="home_bg_overlay">#7f333639</color>
+    <color name="hotline_color_button_text">#3F51B5</color>
+    <color name="login_bg_btn_login">#1B1515</color>
+    <color name="notification_fragment_bg_color">#AED581</color>
+    <color name="notification_item_bg_color_clear">#F44336</color>
+    <color name="profile_color_bg_container_driver_info">#4CAF50</color>
+    <color name="trip_color_direction_route_1">#3F51B5</color>
+    <color name="trip_color_direction_route_2">#00BCD4</color>
+    <color name="account_bg_color_container_driver_profile">#4CAF50</color>
+    <color name="account_bg_color_driver_info">#4CAF50</color>
+    <color name="update_info_color_text_save">#4CAF50</color>
+    <color name="update_info_color_border_avatar">#4CAF50</color>
+    <color name="confirm_color_button_text">#3F51B5</color>
+    <color name="wallet_fragment_bg_color">#AED581</color>
+    <color name="wallet_bg_color_total_deposit">#4CAF50</color>
+    <color name="trip_color_border_avatar">#4CAF50</color>
+    <color name="trip_color_border_title">#4CAF50</color>
+    <color name="bg_wallet_detail_container">#AED581</color>
+    <color name="new_trip_bg_color">#AED581</color>
+    <color name="dialog_change_avatar_bg_color">#FFFFFF</color>
+    <color name="item_new_trip_label_car_rental_self">#F44336</color>
+    <color name="item_new_trip_label_car_with_driver">#4CAF50</color>
+    <color name="color_text">#404040</color>
+    <color name="bg_home">#F6F6F6</color>
+    <color name="bg_history">#F7F5F5</color>
+    <color name="gray_50">#f9f9f9</color>
+    <color name="gray_100">#F5F5F5</color>
+    <color name="gray_200">#eaeef1</color>
+    <color name="gray_300">#d6d6d6</color>
+    <color name="gray_400">#857c8a92</color>
+    <color name="gray_500">#ababab</color>
+    <color name="gray_650">#7d7d7d</color>
+    <color name="gray_700">#5a5a5a</color>
+    <color name="gray_800">#424242</color>
+
+    <color name="toolBar">#F5F5F5</color>
+    <color name="blue">#27D6F4</color>
+    <color name="blue_press">#52E2F3</color>
+    <color name="blue_disable">#6627D6F4</color>
+
+    <color name="dark_blue">#33469B</color>
+    <color name="dark_blue_press">#B333469B</color>
+    <color name="dark_blue_disable">#6633469B</color>
 
     <color name="black_press">#404040</color>
-    <color name="history_color_bg_trip_status_ok">#ff00b4b1</color>
-    <color name="history_color_bg_trip_status_cancel">#CF2F1C</color>
+    <color name="orange">#FF9800</color>
+    <color name="orange_press">#B3FF9800</color>
+    <color name="color_orange">#E0FF6100</color>
 </resources>

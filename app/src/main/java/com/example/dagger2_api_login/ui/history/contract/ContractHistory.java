@@ -7,6 +7,7 @@ import com.example.dagger2_api_login.ui.history.adapter.HistoryAdapter;
 import java.util.List;
 
 public interface ContractHistory {
+
     interface View extends BaseContract.BaseView {
         void showHistoryTripForDriver(List<TripSection> tripSectionList);
 
@@ -15,4 +16,5 @@ public interface ContractHistory {
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
         void getHistoryTripForDriver(String page, String count);
     }
+
 }

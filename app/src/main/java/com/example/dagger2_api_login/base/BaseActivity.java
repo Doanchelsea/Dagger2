@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -15,9 +16,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.dagger2_api_login.ApplicationDagger;
 import com.example.dagger2_api_login.R;
+import com.example.dagger2_api_login.contract.AppConstants;
 import com.example.dagger2_api_login.dagger.components.ActivityComponets;
 import com.example.dagger2_api_login.dagger.components.DaggerActivityComponets;
 import com.example.dagger2_api_login.dagger.moduls.ActivityModule;
+import com.example.dagger2_api_login.untils.DateUtils;
+import com.example.dagger2_api_login.untils.FormatUtils;
+import com.example.dagger2_api_login.untils.StringUtils;
 import com.novoda.merlin.Bindable;
 import com.novoda.merlin.Connectable;
 import com.novoda.merlin.Disconnectable;
@@ -113,6 +118,95 @@ public abstract class BaseActivity extends RxAppCompatActivity {
                 .into(ivAvatar);
     }
 
+    protected void loadFullName(String fullName, TextView tvFullName) {
+        if (StringUtils.isEmpty(fullName) || tvFullName == null) {
+            return;
+        }
+        tvFullName.setText(fullName);
+    }
+
+    protected void loadPickUpPointAddress(String pickUpPointAddress, TextView tvPickUpPointAddress) {
+        if (StringUtils.isEmpty(pickUpPointAddress) || tvPickUpPointAddress == null) {
+            return;
+        }
+        tvPickUpPointAddress.setText(pickUpPointAddress);
+    }
+
+    protected void loadDrofOffOneAddress(String drofOffOneAddress, TextView tvDrofOffOne) {
+        if (StringUtils.isEmpty(drofOffOneAddress) || tvDrofOffOne == null) {
+            return;
+        }
+        tvDrofOffOne.setText(drofOffOneAddress);
+    }
+
+    protected void loadDrofOffTwoAddress(String drofOffTwoAddress, TextView tvDrofOffTwo) {
+        if (StringUtils.isEmpty(drofOffTwoAddress) || tvDrofOffTwo == null) {
+            return;
+        }
+        tvDrofOffTwo.setText(drofOffTwoAddress);
+    }
+
+    protected void loadEstimatedPrice(double estimatedPrice, TextView tvPrice) {
+        if (tvPrice == null) {
+            return;
+        }
+        String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedPrice);
+        tvPrice.setText(getString(R.string.common_label_estimated_price, estimatedPriceFormatted));
+    }
+
+    protected void gone(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    protected void visible(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+    }
+
+    protected boolean isVisible(View view) {
+        return view.getVisibility() == View.VISIBLE;
+    }
+
+
+    protected void loadDateTime(long createDated, TextView tvCreateDate) {
+        if (tvCreateDate == null) {
+            return;
+        }
+        tvCreateDate.setText(DateUtils.convertMiliToDateTime(createDated));
+    }
+
+    protected void loadCreateTime(long createTimed, TextView tvCreateTime) {
+        if (tvCreateTime == null) {
+            return;
+        }
+        tvCreateTime.setText(getString(R.string.history_label_create_time, DateUtils.convertMiliToTime(createTimed)));
+    }
+
+    protected void loadTripStatus(int tripStatus, TextView tvTripStatus) {
+        if (tvTripStatus == null) {
+            return;
+        }
+        if (tripStatus == AppConstants.TRIP_STATUS_69) {
+            tvTripStatus.setBackgroundResource(R.color.history_color_bg_trip_status_ok);
+            tvTripStatus.setText(R.string.history_label_trip_status_success);
+        } else {
+            tvTripStatus.setBackgroundResource(R.color.history_color_bg_trip_status_cancel);
+            tvTripStatus.setText(R.string.history_label_trip_status_cancel);
+        }
+    }
+
     protected ActivityComponets getActivityComponent() {
         if (activityComponets == null) {
             activityComponets = DaggerActivityComponets.builder()
@@ -133,6 +227,9 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     public void showToastDisconnect() {
         Toasty.error(this, getString(R.string.error_missing_network), 200).show();
+    }
+    public void showToast(int mess) {
+        Toasty.error(this, getString(mess), 200).show();
     }
 
 }

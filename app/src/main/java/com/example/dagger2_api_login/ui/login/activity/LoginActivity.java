@@ -12,11 +12,18 @@ import android.widget.Toast;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.BaseActivity;
+import com.example.dagger2_api_login.contract.AppConstants;
 import com.example.dagger2_api_login.model.dagger.Dagger;
+
 import com.example.dagger2_api_login.model.dagger.Results;
+import com.example.dagger2_api_login.model.history.History;
+import com.example.dagger2_api_login.model.history.ResultsHis;
+import com.example.dagger2_api_login.model.history.TripPackage;
 import com.example.dagger2_api_login.ui.login.contract.LoginContract;
 import com.example.dagger2_api_login.ui.login.presenter.LoginPresenter;
 import com.example.dagger2_api_login.ui.main.activity.MainActivity;
+import com.example.dagger2_api_login.untils.NetworkUtils;
+import com.example.dagger2_api_login.untils.ToastUtils;
 import com.example.dagger2_api_login.widget.LoadingDialog;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.novoda.merlin.Bindable;
@@ -132,12 +139,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, C
     @Override
     public void onResult(Results results) {
         presenter.saveUserInfoSharedPreferences(results);
-        ShowMain();
         showProgress(false);
     }
 
 
-    private void ShowMain() {
+    @Override
+    public void showMain() {
         MainActivity.startActivity(this);
         finish();
     }

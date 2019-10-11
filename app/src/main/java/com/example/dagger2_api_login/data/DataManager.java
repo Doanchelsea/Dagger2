@@ -7,6 +7,7 @@ import com.example.dagger2_api_login.model.dagger.Dagger;
 import com.example.dagger2_api_login.model.dagger.Token;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
 import com.example.dagger2_api_login.model.history.History;
+import com.example.dagger2_api_login.model.historyDetail.HistoryDetail;
 
 import javax.inject.Inject;
 
@@ -35,8 +36,13 @@ public class DataManager implements PostService, PreferencesHelper {
     }
 
     @Override
-    public Observable<Dagger> getLastStatusDriver(String tokenKey) {
+    public Observable<History> getLastStatusDriver(String tokenKey) {
         return postService.getLastStatusDriver(tokenKey);
+    }
+
+    @Override
+    public Observable<HistoryDetail> historyDetail(String tokenKey, RequestBody body) {
+        return postService.historyDetail(tokenKey,body);
     }
 
 

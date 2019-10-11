@@ -17,4 +17,9 @@ public class AppConstants {
     public static final int TRIP_STATUS_69 = 69;
 
     public static final long DURATION_DELAY_BEFORE_WORKING_2 = 2;
+
+    //error
+    public static final String user_login_other_device = "USR_ERROR_000000000";
+
+    public static final String KEY_HISTORY_DETAIL_TRIP_ID = "tripPackageId";
 }

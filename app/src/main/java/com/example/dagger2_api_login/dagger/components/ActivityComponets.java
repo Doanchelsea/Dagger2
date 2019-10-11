@@ -4,6 +4,7 @@ package com.example.dagger2_api_login.dagger.components;
 import com.example.dagger2_api_login.dagger.moduls.ActivityModule;
 import com.example.dagger2_api_login.dagger.scope.ActivityScope;
 import com.example.dagger2_api_login.ui.account.fragment.AccountFragment;
+import com.example.dagger2_api_login.ui.history.activity.HistoryDetailActivity;
 import com.example.dagger2_api_login.ui.history.fragment.HistoryFragment;
 import com.example.dagger2_api_login.ui.home.fragment.HomeFragment;
 import com.example.dagger2_api_login.ui.login.activity.LoginActivity;
@@ -29,6 +30,8 @@ public interface ActivityComponets {
     HistoryFragment inject(HistoryFragment historyFragment);
 
     AccountFragment inject(AccountFragment accountFragment);
+
+    HistoryDetailActivity inject(HistoryDetailActivity historyDetailActivity);
 
 
 }
