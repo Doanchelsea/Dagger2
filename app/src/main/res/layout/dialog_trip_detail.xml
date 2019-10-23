@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dialog_trip_detail_tv_customer_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_dialog_trip_detail_title"
+        android:padding="@dimen/space_16"
+        android:text="@string/trip_detail1_title_customer"
+        android:textAllCaps="false"
+        android:textColor="@color/account_color_full_name"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_trip_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_trip_detail_tv_customer_title">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/layout_customer_info_iv_avatar"
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_80"
+            android:layout_marginTop="@dimen/space_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars[3]" />
+
+        <TextView
+            android:id="@+id/layout_customer_info_tv_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/space_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/layout_customer_info_iv_avatar"
+            app:layout_constraintStart_toStartOf="@id/layout_customer_info_iv_avatar"
+            app:layout_constraintTop_toBottomOf="@id/layout_customer_info_iv_avatar"
+            tools:text="Nguyễn Đình Đoàn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<Button-->
+        <!--android:id="@+id/dialog_trip_detail_btn_cancel_trip"-->
+        <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/space_50"-->
+        <!--android:layout_marginStart="@dimen/space_8"-->
+        <!--android:layout_marginBottom="@dimen/space_8"-->
+        <!--android:background="@color/color_bg_btn_cancel_trip"-->
+        <!--android:text="@string/trip_detail_button_text_cancel_trip"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textAllCaps="false"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/dialog_trip_detail_btn_close"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/dialog_trip_detail_container"-->
+        <!--android:layout_marginLeft="@dimen/space_8" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/dialog_trip_detail_btn_close"-->
+        <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="@dimen/space_50"-->
+        <!--android:layout_marginStart="@dimen/space_8"-->
+        <!--android:layout_marginEnd="@dimen/space_8"-->
+        <!--android:layout_marginBottom="@dimen/space_8"-->
+        <!--android:background="@color/gray"-->
+        <!--android:text="@string/trip_detail_button_text_close"-->
+        <!--android:textAllCaps="false"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/dialog_trip_detail_btn_cancel_trip"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/dialog_trip_detail_container" />-->
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_trip_detail_container" />
+
+    <Button
+        android:id="@+id/dialog_trip_detail_btn_cancel_trip"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_40"
+        android:text="Hủy đơn"
+        android:textAllCaps="false"
+        android:textColor="@color/hotline_color_button_text"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/space_1"
+        android:layout_height="@dimen/space_40"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/dialog_trip_detail_btn_close"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dialog_trip_detail_btn_cancel_trip"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+    <Button
+        android:id="@+id/dialog_trip_detail_btn_close"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_40"
+        android:text="Đóng"
+        android:textAllCaps="false"
+        android:textColor="@color/hotline_color_button_text"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

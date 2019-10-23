@@ -8,7 +8,7 @@ public interface BaseContract {
 
         void showProgress(boolean show);
 
-        void showError(@StringRes int stringResId);
+        void showError(int stringResId);
 
     }
 

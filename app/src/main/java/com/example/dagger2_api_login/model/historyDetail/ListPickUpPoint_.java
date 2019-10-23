@@ -1,10 +1,13 @@
 
 package com.example.dagger2_api_login.model.historyDetail;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ListPickUpPoint_ {
+public class ListPickUpPoint_ implements Parcelable {
 
     @SerializedName("address")
     @Expose
@@ -21,6 +24,26 @@ public class ListPickUpPoint_ {
     @SerializedName("type")
     @Expose
     private Long type;
+
+    protected ListPickUpPoint_(Parcel in) {
+        this.address = in.readString();
+        this.longitude = in.readDouble();
+        this.latitude = in.readDouble();
+        this.order = in.readString();
+        this.type = in.readLong();
+    }
+
+    public static final Creator<ListPickUpPoint_> CREATOR = new Creator<ListPickUpPoint_>() {
+        @Override
+        public ListPickUpPoint_ createFromParcel(Parcel in) {
+            return new ListPickUpPoint_(in);
+        }
+
+        @Override
+        public ListPickUpPoint_[] newArray(int size) {
+            return new ListPickUpPoint_[size];
+        }
+    };
 
     public String getAddress() {
         return address;
@@ -62,4 +85,18 @@ public class ListPickUpPoint_ {
         this.type = type;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(address);
+        parcel.writeDouble(longitude);
+        parcel.writeDouble(latitude);
+        parcel.writeString(order);
+        parcel.writeLong(type);
+
+    }
 }

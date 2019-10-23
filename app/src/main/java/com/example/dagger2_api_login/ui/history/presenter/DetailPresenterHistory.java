@@ -48,6 +48,7 @@ public class DetailPresenterHistory extends RxPresenter<DetailContractHistory.Vi
             mView.showError(R.string.common_noti_error);
             return;
         }
+
         Map<String, String> httpBody = new HashMap<>();
         httpBody.put(AppConstants.KEY_HISTORY_DETAIL_TRIP_ID, tripPackage);
 
@@ -60,6 +61,44 @@ public class DetailPresenterHistory extends RxPresenter<DetailContractHistory.Vi
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(resultsHis -> {
                     mView.showResult(resultsHis);
+                }, throwable -> {
+                    mView.showError(R.string.common_noti_error);
+                });
+
+        addSubscribe(disposable);
+
+    }
+
+    @Override
+    public void getRattingBar(String tripPackage, String ratingTrip) {
+        if (StringUtils.isEmpty(tripPackage)){
+            mView.showError(R.string.common_noti_error);
+            return;
+        }
+        Token token = dataManager.getToken();
+        if (token == null){
+            mView.showError(R.string.common_noti_error);
+            return;
+        }
+        String tokenKey = dataManager.getToken().getTokenKey();
+        if (StringUtils.isEmpty(tokenKey)){
+            mView.showError(R.string.common_noti_error);
+            return;
+        }
+
+        Map<String, String> httpBody = new HashMap<>();
+        httpBody.put(AppConstants.KEY_HISTORY_DETAIL_TRIP_ID, tripPackage);
+        httpBody.put(AppConstants.KEY_HISTORY_ratingTrip,ratingTrip);
+
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                (new JSONObject(httpBody)).toString());
+
+        Disposable disposable = dataManager.rattingBarTrip(tokenKey,body)
+                .flatMap(history -> Observable.just(history.getResults()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(resultsHis -> {
+                    mView.showRattingBar(resultsHis);
                 }, throwable -> {
                     mView.showError(R.string.common_noti_error);
                 });

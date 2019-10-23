@@ -2,12 +2,15 @@ package com.example.dagger2_api_login.ui.history.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,9 +38,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import es.dmoral.toasty.Toasty;
 
 public class HistoryDetailActivity extends BaseActivity implements DetailContractHistory.View, Connectable, Disconnectable, Bindable {
-
 
     private static final String EXTRA_TRIP_ID = "EXTRA_TRIP_ID";
 
@@ -75,12 +78,15 @@ public class HistoryDetailActivity extends BaseActivity implements DetailContrac
     ImageView ivDotOne;
     @BindView(R.id.activity_history_detail_iv_dot_two)
     ImageView ivDotTwo;
+    @BindView(R.id.ratting_bar_history_detail)
+    RatingBar ratingBar;
 
     @BindView(R.id.fakeStatusBar)
     View fakeStatusBar;
     @BindView(R.id.mainView)
     RelativeLayout mainView;
     private String tripId;
+
 
 
     public static void startActivity(Context context, String tripId) {
@@ -222,6 +228,22 @@ public class HistoryDetailActivity extends BaseActivity implements DetailContrac
             visible(ivDotOne, ivMarkerDrofOffOne, tvDrofOffOne, viewDividerOne,
                     ivDotTwo, ivMarkerDrofOffTwo, tvDrofOffTwo, viewDividerTwo,mainView);
         }
+        ratingBar.setRating(results.getTripPackageDetail().getRatingTrip());
+
+        if (results.getTripPackageDetail().getRatingTrip() == 0){
+            ratingBar.setIsIndicator(false);
+            ratingBar.setOnRatingBarChangeListener((ratingBar1, v, b) -> {
+                detailPresenterHistory.getRattingBar(tripId,String.valueOf(ratingBar1.getRating()));
+            });
+        }
         showProgress(false);
+    }
+
+    @Override
+    public void showRattingBar(Results results) {
+        if (results == null) {
+            return;
+        }
+        Toasty.success(this,results.getMessages()).show();
     }
 }

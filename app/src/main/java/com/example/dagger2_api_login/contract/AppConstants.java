@@ -22,4 +22,17 @@ public class AppConstants {
     public static final String user_login_other_device = "USR_ERROR_000000000";
 
     public static final String KEY_HISTORY_DETAIL_TRIP_ID = "tripPackageId";
+    public static final String KEY_HISTORY_ratingTrip = "ratingTrip";
+
+    public static final String KEY_FIREBASE_SERVICE_NOTIFICATION_CODE = "notificationCode";
+    public static final String KEY_FIREBASE_SERVICE_NOTIFICATION_CONTENT = "notificationContent";
+
+    public static final String COMMON_TRIP_CODE_KO_TIM_THAY_CHUYEN_NOTIFICATION = "210";
+    public static final String COMMON_TRIP_CODE_NHAN_CHUYEN_NOTIFICATION = "212";
+    public static final String COMMON_TRIP_CODE_HUY_CHUYEN_NOTIFICATION = "214";
+    public static final String COMMON_TRIP_CODE_BAT_DAU_CHUYEN_NOTIFICATION = "215";
+    public static final String COMMON_TRIP_CODE_KET_THUC_CHUYEN_NOTIFICATION = "216";
+    public static final String COMMON_TRIP_CODE_THANH_TOAN_THANH_CONG_NOTIFICATION = "217";
+    public static final String KEY_FIREBASE_SERVICE_TRIP_ID = "objectId";
+
 }

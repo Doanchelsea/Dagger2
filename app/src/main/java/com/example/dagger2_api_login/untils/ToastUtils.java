@@ -7,7 +7,7 @@ import androidx.annotation.StringRes;
 import es.dmoral.toasty.Toasty;
 
 public class ToastUtils {
-    public static void showToastyNormal(Context context, @StringRes int stringId) {
+        public static void showToastyNormal(Context context, @StringRes int stringId) {
         Toasty.normal(context, context.getString(stringId), 2000).show();
     }
 }

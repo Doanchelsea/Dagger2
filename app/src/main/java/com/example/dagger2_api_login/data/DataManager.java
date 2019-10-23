@@ -6,6 +6,7 @@ import com.example.dagger2_api_login.data.local.PreferencesHelper;
 import com.example.dagger2_api_login.model.dagger.Dagger;
 import com.example.dagger2_api_login.model.dagger.Token;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
+import com.example.dagger2_api_login.model.error.Error;
 import com.example.dagger2_api_login.model.history.History;
 import com.example.dagger2_api_login.model.historyDetail.HistoryDetail;
 
@@ -18,6 +19,7 @@ public class DataManager implements PostService, PreferencesHelper {
 
     private PostService postService;
     private PreferencesHelper preferencesHelper;
+
 
 
     public DataManager(PostService postService,PreferencesHelper preferencesHelper) {
@@ -45,6 +47,26 @@ public class DataManager implements PostService, PreferencesHelper {
         return postService.historyDetail(tokenKey,body);
     }
 
+    @Override
+    public Observable<HistoryDetail> rattingBarTrip(String tokenKey, RequestBody body) {
+        return postService.rattingBarTrip(tokenKey,body );
+    }
+
+    @Override
+    public Observable<Error> findTripByLocation(String tokenKey, RequestBody body) {
+        return postService.findTripByLocation(tokenKey,body);
+    }
+
+    @Override
+    public Observable<HistoryDetail> getLastStatus(String tokenKey) {
+        return postService.getLastStatus(tokenKey);
+    }
+
+    @Override
+    public Observable<HistoryDetail> getLstCarType(String tokenKey, RequestBody body) {
+        return postService.getLstCarType(tokenKey,body);
+    }
+
 
     /*----------------------------------Prefs Helper----------------------------------*/
     @Override
@@ -55,6 +77,21 @@ public class DataManager implements PostService, PreferencesHelper {
     @Override
     public boolean IsLoggedIn() {
         return preferencesHelper.IsLoggedIn();
+    }
+
+    @Override
+    public void setDeviceId(String deviceId) {
+        preferencesHelper.setDeviceId(deviceId);
+    }
+
+    @Override
+    public String getDeviceId() {
+        return preferencesHelper.getDeviceId();
+    }
+
+    @Override
+    public void clearDeviceId() {
+        preferencesHelper.clearDeviceId();
     }
 
 
@@ -100,5 +137,6 @@ public class DataManager implements PostService, PreferencesHelper {
     public void clearAllUserInfo() {
         clearUserInfo();
         clearToken();
+        clearDeviceId();
     }
 }

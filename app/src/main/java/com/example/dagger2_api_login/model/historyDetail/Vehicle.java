@@ -1,11 +1,14 @@
 
 package com.example.dagger2_api_login.model.historyDetail;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Vehicle {
+public class Vehicle implements Parcelable {
 
     @SerializedName("vehicleId")
     @Expose
@@ -82,6 +85,45 @@ public class Vehicle {
     @SerializedName("vehicleTypeName")
     @Expose
     private String vehicleTypeName;
+
+    protected Vehicle(Parcel in) {
+        this.vehicleId = in.readString();
+        this.numberPlate = in.readString();
+        this.vehicleName = in.readString();
+        this.transportCompanyId = in.readString();
+        this.transportCompanyName = in.readString();
+        this.origin = in.readString();
+        this.manufacturerId = in.readString();
+        this.manufacturerName = in.readString();
+        this.carType = in.readString();
+        this.vehicleStatus = in.readLong();
+        this.userId = in.readString();
+        this.productedYear = in.readString();
+        this.numberOfSeats = in.readInt();
+        this.driverId = in.readString();
+        this.longitude = in.readDouble();
+        this.latitude = in.readDouble();
+        this.vehicleTypeId = in.readString();
+        this.driverName = in.readString();
+        this.vehicleTypeLuxury = in.readLong();
+        this.registerDate = in.readLong();
+        this.registerExpiryDate = in.readLong();
+        this.createdDate = in.readLong();
+        this.updatedDate = in.readLong();
+        this.vehicleTypeName = in.readString();
+    }
+
+    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
+        @Override
+        public Vehicle createFromParcel(Parcel in) {
+            return new Vehicle(in);
+        }
+
+        @Override
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
 
     public String getVehicleId() {
         return vehicleId;
@@ -281,5 +323,38 @@ public class Vehicle {
 
     public void setVehicleTypeName(String vehicleTypeName) {
         this.vehicleTypeName = vehicleTypeName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(vehicleId);
+        parcel.writeString(numberPlate);
+        parcel.writeString(vehicleName);
+        parcel.writeString(transportCompanyId);
+        parcel.writeString(transportCompanyName);
+        parcel.writeString(origin);
+        parcel.writeString(manufacturerId);
+        parcel.writeString(manufacturerName);
+        parcel.writeString(carType);
+        parcel.writeLong(vehicleStatus);
+        parcel.writeString(userId);
+        parcel.writeString(productedYear);
+        parcel.writeInt(numberOfSeats);
+        parcel.writeString(driverId);
+        parcel.writeDouble(longitude);
+        parcel.writeDouble(latitude);
+        parcel.writeString(vehicleTypeId);
+        parcel.writeString(driverName);
+        parcel.writeLong(vehicleTypeLuxury);
+        parcel.writeLong(registerDate);
+        parcel.writeLong(registerExpiryDate);
+        parcel.writeLong(createdDate);
+        parcel.writeLong(updatedDate);
+        parcel.writeString(vehicleTypeName);
     }
 }

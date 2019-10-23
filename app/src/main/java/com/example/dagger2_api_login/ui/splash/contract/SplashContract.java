@@ -17,9 +17,13 @@ public interface SplashContract {
 
         void showErrorLastStatus(Error error, DataManager dataManager);
 
+        void showDevieID();
+
 
     }
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
         void saveDeviceIdSharedPreferences();
+
+        void getDevieId();
     }
 }

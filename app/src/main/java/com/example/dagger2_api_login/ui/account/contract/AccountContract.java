@@ -9,7 +9,6 @@ public interface AccountContract {
     interface View extends BaseContract.BaseView{
         void showAvatar(String url);
         void showName(String name);
-
     }
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
         void getAvatar();

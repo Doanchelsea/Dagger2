@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 @Singleton
 public class AppPreferencesHelper implements PreferencesHelper {
 
+    private static final String PREF_KEY_DEVICE_ID = "PREF_KEY_DEVICE_ID";
     private static final String PREF_KEY_USER_INFO = "PREF_KEY_USER_INFO";
     private static final String PREF_KEY_IS_LOGGED_IN = "PREF_KEY_IS_LOGGED_IN ";
     private static final String PREF_KEY_TOKEN_INFO = "PREF_KEY_TOKEN_INFO";
@@ -35,6 +36,21 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public boolean IsLoggedIn() {
         return mPrefs.getBoolean(PREF_KEY_IS_LOGGED_IN, false);
+    }
+
+    @Override
+    public void setDeviceId(String deviceId) {
+        mPrefs.edit().putString(PREF_KEY_DEVICE_ID, deviceId).apply();
+    }
+
+    @Override
+    public String getDeviceId() {
+        return mPrefs.getString(PREF_KEY_DEVICE_ID, "");
+    }
+
+    @Override
+    public void clearDeviceId() {
+        mPrefs.edit().remove(PREF_KEY_DEVICE_ID).apply();
     }
 
     @Override

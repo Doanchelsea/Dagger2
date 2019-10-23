@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainView"
-    android:visibility="gone"
+    android:visibility="visible"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
     android:background="@color/bg_home">
 
@@ -102,6 +101,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contrainLayoutHistory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space_10"
@@ -143,7 +143,8 @@
                     android:text="0 đ"
                     android:textAlignment="center"
                     android:textColor="@color/color_orange"
-                    android:textSize="@dimen/text_size_18" />
+                    android:textSize="@dimen/text_size_18"
+                    android:layout_marginLeft="@dimen/space_5" />
             </RelativeLayout>
 
             <View
@@ -321,11 +322,36 @@
                     app:layout_constraintStart_toEndOf="@id/activity_history_detail_iv_marker_drof_off_two"
                     app:layout_constraintTop_toTopOf="@id/activity_history_detail_iv_marker_drof_off_two"
                     tools:text="18/629 Kim Mã, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="@dimen/space_8"
+            app:layout_constraintTop_toBottomOf="@+id/contrainLayoutHistory"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/space_10"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+            <RatingBar
+                android:id="@+id/ratting_bar_history_detail"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="1"
+                android:progressBackgroundTint="@color/black"
+                android:progressTint="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

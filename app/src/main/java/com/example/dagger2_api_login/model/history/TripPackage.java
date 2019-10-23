@@ -21,7 +21,7 @@ public class TripPackage {
     private List<ListPickUpPoint> listPickUpPoint;
     @SerializedName("tripPackageStatus")
     @Expose
-    private Integer tripPackageStatus;
+    private Long tripPackageStatus;
     @SerializedName("tripPackageType")
     @Expose
     private Long tripPackageType;
@@ -143,11 +143,11 @@ public class TripPackage {
         this.listPickUpPoint = listPickUpPoint;
     }
 
-    public Integer getTripPackageStatus() {
+    public Long getTripPackageStatus() {
         return tripPackageStatus;
     }
 
-    public void setTripPackageStatus(Integer tripPackageStatus) {
+    public void setTripPackageStatus(Long tripPackageStatus) {
         this.tripPackageStatus = tripPackageStatus;
     }
 

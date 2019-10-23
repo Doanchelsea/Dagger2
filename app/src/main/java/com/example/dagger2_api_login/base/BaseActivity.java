@@ -3,6 +3,7 @@ package com.example.dagger2_api_login.base;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -146,14 +147,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         tvDrofOffTwo.setText(drofOffTwoAddress);
     }
 
-    protected void loadEstimatedPrice(double estimatedPrice, TextView tvPrice) {
-        if (tvPrice == null) {
-            return;
-        }
-        String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedPrice);
-        tvPrice.setText(getString(R.string.common_label_estimated_price, estimatedPriceFormatted));
-    }
-
     protected void gone(final View... views) {
         if (views != null && views.length > 0) {
             for (View view : views) {
@@ -224,6 +217,58 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         }
         compositeDisposable.add(disposable);
     }
+
+    protected void loadEstimatedDuration(double estimatedDuration, TextView tvDuration) {
+        if (tvDuration == null) {
+            return;
+        }
+        if (estimatedDuration <60){
+            String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedDuration);
+            tvDuration.setText(getString(R.string.common_label_estimated_duration_second, estimatedPriceFormatted));
+        }else if (estimatedDuration < 3600){
+            double estimatedDurationminute = estimatedDuration/60;
+            String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedDurationminute);
+            tvDuration.setText(getString(R.string.common_label_estimated_duration_minute, estimatedPriceFormatted));
+        }else {
+            double estimatedDurationHout = estimatedDuration/3600;
+            double estimatedDurationminute = (estimatedDuration - Integer.valueOf((int) estimatedDurationHout)*3600)/60;
+
+            if (estimatedDurationminute <= 0){
+                String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedDurationHout);
+                tvDuration.setText(getString(R.string.common_label_estimated_duration_hour,estimatedPriceFormatted));
+            }else {
+                String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedDurationHout);
+                String estimatedPriceFormattedHoust = FormatUtils.convertEstimatedPrice(estimatedDurationminute);
+                tvDuration.setText(getString(R.string.common_label_estimated_duration_hour,estimatedPriceFormatted)
+                        +" "+getString(R.string.common_label_estimated_duration_minute,estimatedPriceFormattedHoust));
+            }
+        }
+    }
+
+    protected void loadEstimatedPrice(double estimatedPrice, TextView tvPrice) {
+        if (tvPrice == null) {
+            return;
+        }
+        String estimatedPriceFormatted = FormatUtils.convertEstimatedPrice(estimatedPrice);
+        tvPrice.setText(getString(R.string.common_label_estimated_price, estimatedPriceFormatted));
+    }
+
+    protected void loadEstimatedDistance(double estimatedDistance, TextView tvDistance) {
+        if (tvDistance == null) {
+            return;
+        }
+        if (estimatedDistance < 1000) {
+            String estimatedDistanceFormattedMetter = FormatUtils.convertEstimatedDistance(estimatedDistance);
+            tvDistance.setText(getString(R.string.common_label_estimated_distance_metter, estimatedDistanceFormattedMetter));
+        } else {
+            // convert distance to kilo metter
+            double estimatedDistanceFormattedKiloMetter = estimatedDistance / 1000;
+            String estimatedDistanceFormattedDecimal = FormatUtils.convertEstimatedDistance(estimatedDistanceFormattedKiloMetter);
+            tvDistance.setText(getString(R.string.common_label_estimated_distance_kilo_metter, estimatedDistanceFormattedDecimal));
+        }
+    }
+
+
 
     public void showToastDisconnect() {
         Toasty.error(this, getString(R.string.error_missing_network), 200).show();

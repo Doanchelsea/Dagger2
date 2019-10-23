@@ -1,10 +1,13 @@
 
 package com.example.dagger2_api_login.model.historyDetail;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class User implements Parcelable {
 
     @SerializedName("userId")
     @Expose
@@ -165,6 +168,73 @@ public class User {
     @SerializedName("account")
     @Expose
     private Account account;
+
+    protected User(Parcel in) {
+        this.userId = in.readString();
+        this.userName = in.readString();
+        this.fullName = in.readString();
+        this.password = in.readString();
+        this.salt = in.readString();
+        this.email = in.readString();
+        this.facebookId = in.readString();
+        this.googlePlusId = in.readString();
+        this.identityCardNumber = in.readString();
+        this.phoneNumber = in.readString();
+        this.stateCode = in.readLong();
+        this.description = in.readString();
+        this.companyName = in.readString();
+        this.companyId = in.readString();
+        this.birthDay = in.readLong();
+        this.createdDate = in.readLong();
+        this.lastModifiedDate = in.readLong();
+        this.sex = in.readInt();
+        this.avatar = in.readString();
+        this.deviceId = in.readString();
+        this.deviceType = in.readLong();
+        this.language = in.readString();
+        this.assigneeVehicleId = in.readString();
+        this.agencyStatus = in.readLong();
+        this.commissionRate = in.readLong();
+        this.totalDeposits = in.readLong();
+        this.reasonCode = in.readLong();
+        this.district = in.readString();
+        this.address = in.readString();
+        this.currentGeoPoint = in.readParcelable(CurrentGeoPoint.class.getClassLoader());
+        this.currentLongitude = in.readDouble();
+        this.currentLatitude = in.readDouble();
+        this.lockType = in.readLong();
+        this.lockToTime = in.readLong();
+        this.lastLogin = in.readLong();
+        this.notifyOption = in.readLong();
+        this.userType = in.readLong();
+        this.userStatus = in.readLong();
+        this.otpCode = in.readString();
+        this.verifyLockTime = in.readLong();
+        this.verifyStatus = in.readLong();
+        this.licence = in.readParcelable(Licence.class.getClassLoader());
+        this.taxCompanyName = in.readString();
+        this.taxCompanyAddress = in.readString();
+        this.taxCompanyTaxNumber = in.readString();
+        this.driverOnOff = in.readLong();
+        this.driverType = in.readLong();
+        this.updateUser = in.readString();
+        this.updateUserFullName = in.readString();
+        this.updatedDate = in.readLong();
+        this.reputation = in.readDouble();
+        this.account = in.readParcelable(Account.class.getClassLoader());
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getUserId() {
         return userId;
@@ -588,5 +658,66 @@ public class User {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(userId);
+        parcel.writeString(userName);
+        parcel.writeString(fullName);
+        parcel.writeString(password);
+        parcel.writeString(salt);
+        parcel.writeString(email);
+        parcel.writeString(facebookId);
+        parcel.writeString(googlePlusId);
+        parcel.writeString(identityCardNumber);
+        parcel.writeString(phoneNumber);
+        parcel.writeLong(stateCode);
+        parcel.writeString(description);
+        parcel.writeString(companyName);
+        parcel.writeString(companyId);
+        parcel.writeLong(birthDay);
+        parcel.writeLong(createdDate);
+        parcel.writeLong(lastModifiedDate);
+        parcel.writeInt(sex);
+        parcel.writeString(avatar);
+        parcel.writeString(deviceId);
+        parcel.writeLong(deviceType);
+        parcel.writeString(language);
+        parcel.writeString(assigneeVehicleId);
+        parcel.writeLong(agencyStatus);
+        parcel.writeLong(commissionRate);
+        parcel.writeLong(totalDeposits);
+        parcel.writeLong(reasonCode);
+        parcel.writeString(district);
+        parcel.writeString(address);
+        parcel.writeParcelable(currentGeoPoint, i);
+        parcel.writeDouble(currentLongitude);
+        parcel.writeDouble(currentLatitude);
+        parcel.writeLong(lockType);
+        parcel.writeLong(lockToTime);
+        parcel.writeLong(lastLogin);
+        parcel.writeLong(notifyOption);
+        parcel.writeLong(userType);
+        parcel.writeLong(userStatus);
+        parcel.writeString(otpCode);
+        parcel.writeLong(verifyLockTime);
+        parcel.writeLong(verifyStatus);
+        parcel.writeParcelable(licence, i);
+        parcel.writeString(taxCompanyName);
+        parcel.writeString(taxCompanyAddress);
+        parcel.writeString(taxCompanyTaxNumber);
+        parcel.writeLong(driverOnOff);
+        parcel.writeLong(driverType);
+        parcel.writeString(updateUser);
+        parcel.writeString(updateUserFullName);
+        parcel.writeLong(updatedDate);
+        parcel.writeDouble(reputation);
+        parcel.writeParcelable(account, i);
     }
 }

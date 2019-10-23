@@ -9,6 +9,8 @@ import com.example.dagger2_api_login.ui.history.fragment.HistoryFragment;
 import com.example.dagger2_api_login.ui.home.fragment.HomeFragment;
 import com.example.dagger2_api_login.ui.login.activity.LoginActivity;
 import com.example.dagger2_api_login.ui.main.activity.MainActivity;
+import com.example.dagger2_api_login.ui.newtrip.activity.NewTripActivity;
+import com.example.dagger2_api_login.ui.newtrip.presenter.NewTripPresenter;
 import com.example.dagger2_api_login.ui.splash.activity.SplashActivity;
 
 import javax.inject.Singleton;
@@ -32,6 +34,8 @@ public interface ActivityComponets {
     AccountFragment inject(AccountFragment accountFragment);
 
     HistoryDetailActivity inject(HistoryDetailActivity historyDetailActivity);
+
+    NewTripActivity inject(NewTripActivity newTripActivity);
 
 
 }

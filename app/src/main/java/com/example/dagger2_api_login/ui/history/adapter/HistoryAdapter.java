@@ -103,7 +103,7 @@ public class HistoryAdapter extends BaseSectionQuickAdapter<TripSection, BaseVie
         holder.setText(R.id.item_history_content_tv_drof_off_two, drofOffTwoAddress);
     }
 
-    private void loadBackgroundTripStatus(BaseViewHolder holder, int tripStatus) {
+    private void loadBackgroundTripStatus(BaseViewHolder holder, long tripStatus) {
         if (tripStatus == AppConstants.TRIP_STATUS_69) {
             holder.setBackgroundRes(R.id.item_history_content_tv_trip_status, R.color.history_color_bg_trip_status_ok);
             holder.setText(R.id.item_history_content_tv_trip_status, R.string.history_label_trip_status_success);

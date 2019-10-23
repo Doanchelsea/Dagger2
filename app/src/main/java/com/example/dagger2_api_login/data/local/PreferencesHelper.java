@@ -8,7 +8,14 @@ import com.example.dagger2_api_login.model.dagger.UserInfo;
 public interface PreferencesHelper {
 
     void setLoggedIn(boolean isLoggedIn);
+
     boolean IsLoggedIn();
+
+    void setDeviceId(String deviceId);
+
+    String getDeviceId();
+
+    void clearDeviceId();
 
     void setUserInfo(UserInfo userInfo);
     
@@ -17,11 +24,11 @@ public interface PreferencesHelper {
     void clearUserInfo();
 
 
+
     void setToken(Token token);
 
     Token getToken();
 
     void clearToken();
-
 
 }

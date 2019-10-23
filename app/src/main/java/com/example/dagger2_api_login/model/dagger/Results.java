@@ -13,6 +13,7 @@ public class Results {
     @Expose
     private Token token;
 
+
     public UserInfo getUserInfo() {
         return userInfo;
     }

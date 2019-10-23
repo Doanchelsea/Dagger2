@@ -132,6 +132,11 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     }
 
     @Override
+    public void showDevieID() {
+        splashPresenter.saveDeviceIdSharedPreferences();
+    }
+
+    @Override
     public void showProgress(boolean show) {
         if (show){
             LoadingDialog.getInstance().showLoading(this);
@@ -159,7 +164,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
 
     @Override
     public void onConnect() {
-        splashPresenter.saveDeviceIdSharedPreferences();
+        splashPresenter.getDevieId();
         showProgress(true);
 
     }

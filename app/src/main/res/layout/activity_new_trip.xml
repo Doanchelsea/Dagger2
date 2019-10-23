@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/driver_map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/MaterialSearchBarLight"
+        app:mt_speechMode="false"
+        app:mt_hint="Custom hint"
+        app:mt_maxSuggestionsCount="10"
+        android:layout_margin="16dp"
+        app:mt_navIconEnabled="true"
+        android:elevation="5dp"
+        app:mt_placeholder="Tim kiem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchBar" />
+
+    <ImageView
+        android:id="@+id/fragment_home_iv_move_location"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginEnd="@dimen/space_24"
+        android:layout_marginBottom="@dimen/space_24"
+        android:contentDescription="@string/home_cd_ic_location"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_my_location"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="@dimen/space_24" />
+    <ImageView
+        android:id="@+id/fragment_home_iv_move_search_bar"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginStart="@dimen/space_24"
+        android:layout_marginBottom="@dimen/space_24"
+        android:contentDescription="@string/home_cd_ic_location"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_logout"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_type"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/space_24" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="@dimen/space_5"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:id="@+id/constraintLayout_type"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="205dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_type"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_150">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_1"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_type" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_50"
+            android:text="Thời gian"
+            android:textColor="@color/hotline_color_button_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/space_1"
+            android:layout_height="@dimen/space_50"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toStartOf="@+id/tv_quang_duong"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvTime"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <TextView
+            android:id="@+id/tv_quang_duong"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_50"
+            android:text="Quãng đường"
+            android:textColor="@color/hotline_color_button_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toStartOf="@+id/view3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="@dimen/space_1"
+            android:layout_height="@dimen/space_50"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toStartOf="@+id/tv_quang_duong"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_Price"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+        <TextView
+            android:id="@+id/tv_Price"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_50"
+            android:text="Price"
+            android:textColor="@color/hotline_color_button_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

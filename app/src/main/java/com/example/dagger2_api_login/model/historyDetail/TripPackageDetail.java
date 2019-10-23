@@ -1,11 +1,14 @@
 
 package com.example.dagger2_api_login.model.historyDetail;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TripPackageDetail {
+public class TripPackageDetail implements Parcelable {
 
     @SerializedName("tripPackageId")
     @Expose
@@ -115,6 +118,51 @@ public class TripPackageDetail {
     @SerializedName("ownerStateCode")
     @Expose
     private Long ownerStateCode;
+
+    protected TripPackageDetail(Parcel in) {
+        this.tripPackageId = in.readString();
+        this.ownerUserId = in.readString();
+        this.listPickUpPoint = in.createTypedArrayList(ListPickUpPoint_.CREATOR);
+        this.tripPackageStatus = in.readLong();
+        this.tripPackageType = in.readLong();
+        this.tripPackageName = in.readString();
+        this.createdDate = in.readLong();
+        this.censoredDate = in.readLong();
+        this.overTime = in.readLong();
+        this.startDate = in.readLong();
+        this.startType = in.readLong();
+        this.endDate = in.readLong();
+        this.vehicleTypeId = in.readString();
+        this.numberOfSeats = in.readLong();
+        this.numberOfVehicles = in.readLong();
+        this.numberOfTripPerWeek = in.readLong();
+        this.rate = in.readDouble();
+        this.tripPackageDescription = in.readString();
+        this.estimatedDistance = in.readDouble();
+        this.estimatedDuration = in.readDouble();
+        this.distance = in.readDouble();
+        this.estimatedPrice = in.readDouble();
+        this.price = in.readDouble();
+        this.routeType = in.readLong();
+        this.paidAmount = in.readLong();
+        this.listDriverId = in.createStringArrayList();
+        this.ownerPhoneNumber = in.readString();
+        this.ownerFullName = in.readString();
+        this.ratingTrip = in.readLong();
+        this.ownerStateCode = in.readLong();
+    }
+
+    public static final Creator<TripPackageDetail> CREATOR = new Creator<TripPackageDetail>() {
+        @Override
+        public TripPackageDetail createFromParcel(Parcel in) {
+            return new TripPackageDetail(in);
+        }
+
+        @Override
+        public TripPackageDetail[] newArray(int size) {
+            return new TripPackageDetail[size];
+        }
+    };
 
     public String getTripPackageId() {
         return tripPackageId;
@@ -402,5 +450,44 @@ public class TripPackageDetail {
 
     public void setOwnerStateCode(Long ownerStateCode) {
         this.ownerStateCode = ownerStateCode;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(tripPackageId);
+        parcel.writeString(ownerUserId);
+        parcel.writeTypedList(listPickUpPoint);
+        parcel.writeLong(tripPackageStatus);
+        parcel.writeLong(tripPackageType);
+        parcel.writeString(tripPackageName);
+        parcel.writeLong(createdDate);
+        parcel.writeLong(censoredDate);
+        parcel.writeLong(overTime);
+        parcel.writeLong(startDate);
+        parcel.writeLong(startType);
+        parcel.writeLong(endDate);
+        parcel.writeString(vehicleTypeId);
+        parcel.writeLong(numberOfSeats);
+        parcel.writeLong(numberOfVehicles);
+        parcel.writeLong(numberOfTripPerWeek);
+        parcel.writeDouble(rate);
+        parcel.writeString(tripPackageDescription);
+        parcel.writeDouble(estimatedDistance);
+        parcel.writeDouble(estimatedDuration);
+        parcel.writeDouble(distance);
+        parcel.writeDouble(estimatedPrice);
+        parcel.writeDouble(price);
+        parcel.writeLong(routeType);
+        parcel.writeLong(paidAmount);
+        parcel.writeStringList(listDriverId);
+        parcel.writeString(ownerPhoneNumber);
+        parcel.writeString(ownerFullName);
+        parcel.writeLong(ratingTrip);
+        parcel.writeLong(ownerStateCode);
     }
 }

@@ -10,10 +10,17 @@ public interface DetailContractHistory  {
     interface View extends BaseContract.BaseView{
 
         void showResult(Results results);
+
+        void showRattingBar(Results results);
+
+
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T>{
 
         void getHistoryTripDetailDriver(String tripPackage);
+
+        void getRattingBar(String tripPackage,String ratingTrip);
+
     }
 }

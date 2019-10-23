@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,14 +17,16 @@ import android.widget.Toast;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.BaseActivity;
-import com.example.dagger2_api_login.model.dagger.Results;
+import com.example.dagger2_api_login.data.eventbus.NewEvent;
 import com.example.dagger2_api_login.model.dagger.UserInfo;
 import com.example.dagger2_api_login.model.history.ResultsHis;
+import com.example.dagger2_api_login.model.historyDetail.Results;
 import com.example.dagger2_api_login.ui.account.fragment.AccountFragment;
 import com.example.dagger2_api_login.ui.history.fragment.HistoryFragment;
 import com.example.dagger2_api_login.ui.home.fragment.HomeFragment;
 import com.example.dagger2_api_login.ui.login.activity.LoginActivity;
 import com.example.dagger2_api_login.ui.main.contract.MainContract;
+import com.example.dagger2_api_login.ui.main.diglog.DigLogDrive;
 import com.example.dagger2_api_login.ui.main.presenter.MainPresenter;
 import com.example.dagger2_api_login.ui.splash.activity.SplashActivity;
 import com.example.dagger2_api_login.widget.LoadingDialog;
@@ -36,16 +39,22 @@ import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends BaseActivity implements MainContract.View, Connectable, Disconnectable, Bindable {
+
     private static final String EXTRA_TRIP_CODE = "EXTRA_TRIP_CODE";
     private static final String EXTRA_TRIP_STATUS = "EXTRA_TRIP_STATUS";
     private static final String EXTRA_TRIP_RESULTS = "EXTRA_TRIP_RESULTS";
+
+    private Results results;
 
 
     public static void startActivity(Activity context) {
@@ -78,8 +87,23 @@ public class MainActivity extends BaseActivity implements MainContract.View, Con
         registerBindable(this);
         registerConnectable(this);
         registerDisconnectable(this);
-
+        EventBus.getDefault().register(this);
     }
+
+    @Override
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(NewEvent newEvent){
+//        String tripPackgeID = newEvent.getTripPackgeId();
+//        Toasty.success(this,tripPackgeID).show();
+        mainPresenter.getTripPackge();
+    }
+
 
     @Override
     protected void attachView() {
@@ -113,15 +137,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Con
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-
-
     // MainContract + Base Contract
     @Override
     public void showUserInfo(UserInfo userInfo) {
 
-
     }
 
+    @Override
+    public void showTripPackge(Results results) {
+        DigLogDrive dialog = DigLogDrive.newInstance(results);
+        dialog.show(getSupportFragmentManager(), dialog.getTag());
+    }
 
     private void ShowSplash() {
         LoginActivity.startActivity(this);

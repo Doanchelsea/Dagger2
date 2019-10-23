@@ -12,7 +12,7 @@ import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
 public class ErrorHandler {
-    public static Error errorParser(Throwable error) {
+        public static Error errorParser(Throwable error) {
         String errMessage;
         Error errorParser = null;
         if (error instanceof HttpException) {
