@@ -230,5 +230,61 @@ public class NewTripPresenter extends RxPresenter<NewTripContract.View>
         addSubscribe(disposable);
     }
 
+    @Override
+    public void jsonString(String jsonString) {
+
+        Token token = dataManager.getToken();
+        if (token == null) {
+            mView.showError(R.string.common_noti_error);
+            return;
+        }
+
+        String tokenKey = dataManager.getToken().getTokenKey();
+        if (StringUtils.isEmpty(tokenKey)) {
+            mView.showError(R.string.common_noti_error);
+            return;
+        }
+
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),
+                (jsonString));
+
+        Disposable disposable = dataManager.findTripByLocation(tokenKey,body)
+                .flatMap(error -> Observable.just(error.getResults()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(error -> {
+                    mView.ShowSucess();
+                },throwable -> {
+                    mView.ShowErrorFind(ErrorHandler.errorParser(throwable),dataManager);
+                    Log.d("dâdada",throwable.toString());
+                });
+        addSubscribe(disposable);
+    }
+
+    @Override
+    public void getLastEventBus() {
+        Token token = dataManager.getToken();
+        if (token == null) {
+            return;
+        }
+        String tokenKey = token.getTokenKey();
+        if (StringUtils.isEmpty(tokenKey)) {
+            mView.showError(R.string.common_noti_error_message);
+            return;
+        }
+
+        Disposable disposable = dataManager.getLastStatus(tokenKey)
+                .flatMap(history -> Observable.just(history.getResults()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(resultsHis -> {
+                    mView.showTripPackge(resultsHis);
+                }, throwable -> {
+                    mView.showError(R.string.common_noti_error);
+                });
+
+        addSubscribe(disposable);
+    }
+
 
 }

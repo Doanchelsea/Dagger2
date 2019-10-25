@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.contract.AppConstants;
+import com.example.dagger2_api_login.data.eventbus.CanEvent;
 import com.example.dagger2_api_login.data.eventbus.NewEvent;
 import com.example.dagger2_api_login.ui.main.activity.MainActivity;
 import com.example.dagger2_api_login.untils.StringUtils;
@@ -71,7 +72,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } else if (code.equals(AppConstants.COMMON_TRIP_CODE_NHAN_CHUYEN_NOTIFICATION)) {
             EventBus.getDefault().post(new NewEvent(tripId));
             showNotification(content);
-    }
+        }else if (code.equals(AppConstants.COMMON_TRIP_CODE_HUY_CHUYEN_NOTIFICATION)){
+            EventBus.getDefault().post(new CanEvent());
+            showNotification(content);
+        }
 
     }
 

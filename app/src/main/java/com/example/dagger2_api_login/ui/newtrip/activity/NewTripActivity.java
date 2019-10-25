@@ -22,12 +22,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.dagger2_api_login.R;
 import com.example.dagger2_api_login.base.BaseActivity;
+import com.example.dagger2_api_login.data.DataManager;
+import com.example.dagger2_api_login.data.eventbus.CanEvent;
+import com.example.dagger2_api_login.data.eventbus.NewEvent;
 import com.example.dagger2_api_login.linsenner.LisennerNewTrip;
+import com.example.dagger2_api_login.model.error.Error;
 import com.example.dagger2_api_login.model.historyDetail.Result;
 import com.example.dagger2_api_login.model.historyDetail.Results;
+import com.example.dagger2_api_login.model.locationbody.DropOffOne;
+import com.example.dagger2_api_login.model.locationbody.DropOffTwo;
+import com.example.dagger2_api_login.model.locationbody.LocationBody;
+import com.example.dagger2_api_login.model.locationbody.StartLocation;
 import com.example.dagger2_api_login.ui.home.presenter.HomePresenter;
+import com.example.dagger2_api_login.ui.main.diglog.DigLogDrive;
 import com.example.dagger2_api_login.ui.newtrip.adapter.TypeAdapter;
 import com.example.dagger2_api_login.ui.newtrip.contract.NewTripContract;
 import com.example.dagger2_api_login.ui.newtrip.presenter.NewTripPresenter;
@@ -53,6 +63,7 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.gson.Gson;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.novoda.merlin.Bindable;
@@ -61,6 +72,12 @@ import com.novoda.merlin.Disconnectable;
 import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +122,15 @@ public class NewTripActivity extends BaseActivity implements NewTripContract.Vie
     ImageView ivMoveLocationSearch;
     @BindView(R.id.searchBar)
     MaterialSearchBar materialSearchBar;
+    double estimatedPrice;
+    long estimatedDistance,vehicleTypeLuxury,estimatedDuration,vehicleTypeId;
+    List<LocationBody> locationBodyList = new ArrayList<>();
+    StartLocation startLocation;
+    DropOffOne dropOffOne;
+    DropOffTwo dropOffTwo;
+    DigLogDrive dialog;
+
+
 
     private List<AutocompletePrediction> predictionList;
     private PlacesClient mplacesClient;
@@ -119,6 +145,7 @@ public class NewTripActivity extends BaseActivity implements NewTripContract.Vie
         registerBindable(this);
         registerConnectable(this);
         registerDisconnectable(this);
+        EventBus.getDefault().register(this);
 
         if (currentLocation != null) {
             LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
@@ -134,7 +161,19 @@ public class NewTripActivity extends BaseActivity implements NewTripContract.Vie
         if (locationClient != null && locationCallback != null) {
             locationClient.removeLocationUpdates(locationCallback);
         }
+        EventBus.getDefault().unregister(this);
         super.onPause();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(NewEvent newEvent){
+//        String tripPackgeID = newEvent.getTripPackgeId();
+//        Toasty.success(this,tripPackgeID).show();
+        newTripPresenter.getLastEventBus();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(CanEvent canEvent){
+        dialog.dismiss();
     }
 
 
@@ -179,6 +218,30 @@ public class NewTripActivity extends BaseActivity implements NewTripContract.Vie
         mplacesClient = Places.createClient(this);
         InputMethodManager inm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         newTripPresenter.SeachBar(materialSearchBar,predictionList,mplacesClient,inm);
+
+        addDisposable(RxView.clicks(ivMoveLocationSearch).subscribe(unit -> {
+
+            showProgress(true);
+            if (locationBodyList.size() > 1){
+                startLocation = new StartLocation(locationBodyList.get(0).getStartlocation().getLatitude(),
+                        locationBodyList.get(0).getStartlocation().getLongitude());
+
+                dropOffOne = new DropOffOne(locationBodyList.get(1).getDropOffOne().getLatitude(),
+                        locationBodyList.get(1).getDropOffOne().getLongitude());
+            }
+            if (locationBodyList.size() > 2){
+                dropOffOne = new DropOffOne(locationBodyList.get(2).getDropOffTwo().getLatitude(),
+                        locationBodyList.get(2).getDropOffTwo().getLongitude());
+            }
+
+            LocationBody locationBody = new LocationBody(startLocation,dropOffOne,dropOffTwo,
+                    estimatedPrice,estimatedDistance,vehicleTypeLuxury,estimatedDuration,vehicleTypeId);
+            String jsonString = JSON.toJSONString(locationBody);
+            newTripPresenter.jsonString(jsonString);
+            Log.d("dâdaad",jsonString);
+
+
+        }));
 
 
     }
@@ -345,6 +408,10 @@ public class NewTripActivity extends BaseActivity implements NewTripContract.Vie
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 15);
         driverMap.moveCamera(cameraUpdate);
         newTripPresenter.showResult(lat,lng,currentLocation.getLatitude(), currentLocation.getLongitude());
+
+        startLocation = new StartLocation(currentLocation.getLatitude(),currentLocation.getLongitude());
+        dropOffOne = new DropOffOne(lat,lng);
+        dropOffTwo = new DropOffTwo(0.0,0.0);
         showProgress(true);
     }
 
@@ -366,15 +433,50 @@ public class NewTripActivity extends BaseActivity implements NewTripContract.Vie
         loadEstimatedDuration(results.get(0).getEstimatedDuration(),tvTime);
         loadEstimatedPrice(results.get(0).getEstimatedPrice(),tv_Price);
         loadEstimatedDistance(results.get(0).getEstimatedDistance(),tv_quang_duong);
+
+        vehicleTypeId = results.get(0).getVehicleTypeId();
+        estimatedPrice = results.get(0).getEstimatedPrice();
+        estimatedDistance = results.get(0).getEstimatedDistance();
+        vehicleTypeLuxury = results.get(0).getVehicleTypeLuxury();
+        estimatedDuration = results.get(0).getEstimatedDuration();
+
         visible(constraintLayout);
         showProgress(false);
     }
 
+    @Override
+    public void ShowSucess() {
+        showProgress(false);
+        Toasty.success(this,"Thành công").show();
+    }
+
+    @Override
+    public void ShowErrorFind(Error error, DataManager manager) {
+        showProgress(false);
+        if (error.getResults().getMessages() != null){
+            Toasty.warning(this,error.getResults().getMessages()).show();
+        }else {
+            Toasty.warning(this,error.getResults().getError().getMessage()).show();
+        }
+    }
+
+    @Override
+    public void showTripPackge(Results results) {
+        dialog = DigLogDrive.newInstance(results);
+        dialog.show(getSupportFragmentManager(), dialog.getTag());
+    }
 
     @Override
     public void onClickItemType(Result results) {
         loadEstimatedDuration(results.getEstimatedDuration(),tvTime);
         loadEstimatedPrice(results.getEstimatedPrice(),tv_Price);
         loadEstimatedDistance(results.getEstimatedDistance(),tv_quang_duong);
+
+        vehicleTypeId = results.getVehicleTypeId();
+        estimatedPrice = results.getEstimatedPrice();
+        estimatedDistance = results.getEstimatedDistance();
+        vehicleTypeLuxury = results.getVehicleTypeLuxury();
+        estimatedDuration = results.getEstimatedDuration();
     }
+
 }

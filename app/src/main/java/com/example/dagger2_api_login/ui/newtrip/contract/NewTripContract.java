@@ -3,6 +3,8 @@ package com.example.dagger2_api_login.ui.newtrip.contract;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.dagger2_api_login.base.BaseContract;
+import com.example.dagger2_api_login.data.DataManager;
+import com.example.dagger2_api_login.model.error.Error;
 import com.example.dagger2_api_login.model.historyDetail.Result;
 import com.example.dagger2_api_login.model.historyDetail.Results;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
@@ -18,6 +20,10 @@ public interface NewTripContract {
         void error(int error);
         void show(List<Result> result);
 
+        void ShowSucess();
+        void ShowErrorFind(Error error, DataManager manager);
+        void showTripPackge(Results results);
+
     }
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
         void SeachBar(MaterialSearchBar materialSearchBar,
@@ -26,5 +32,9 @@ public interface NewTripContract {
                       InputMethodManager inm);
 
         void showResult(double lat,double lng,double locationLat, double locationLng);
+
+        void jsonString(String jsonString);
+
+        void getLastEventBus();
     }
 }

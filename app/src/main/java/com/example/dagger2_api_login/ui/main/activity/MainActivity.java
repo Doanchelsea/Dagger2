@@ -101,7 +101,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Con
     public void onEvent(NewEvent newEvent){
 //        String tripPackgeID = newEvent.getTripPackgeId();
 //        Toasty.success(this,tripPackgeID).show();
-        mainPresenter.getTripPackge();
+//        mainPresenter.getTripPackge();
     }
 
 

@@ -35,6 +35,12 @@ public class DigLogDrive extends BaseDialog {
         dialog.setArguments(args);
         return dialog;
     }
+    public static DigLogDrive newInstance() {
+        DigLogDrive dialog = new DigLogDrive();
+        Bundle args = new Bundle();
+        dialog.setArguments(args);
+        return dialog;
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.dialog_trip_detail;

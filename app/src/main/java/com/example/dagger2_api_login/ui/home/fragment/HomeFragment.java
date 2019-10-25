@@ -81,7 +81,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         addDisposable(RxView.clicks(ivMoveLocationSearch).subscribe(
                 unit -> {
                     NewTripActivity.startActivity(activity);
-
                 }
                 ));
 
